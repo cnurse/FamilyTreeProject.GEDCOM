@@ -75,18 +75,15 @@
     <Compile Include="Structures\GEDCOMStructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FamilyTreeProject\FamilyTreeProject.csproj">
-      <Project>{BA58D9F1-31A6-4BDE-9396-0ABA7EE082D9}</Project>
-      <Name>FamilyTreeProject</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="FamilyTreeProject.Models">
+      <HintPath>..\..\packages\FamilyTreeProject.Models.0.1.0\lib\FamilyTreeProject.Models.dll</HintPath>
+    </Reference>
     <Reference Include="Naif.Core">
-      <HintPath>..\..\Externals\Naif\Naif.Core.dll</HintPath>
+      <HintPath>..\..\packages\Naif.Core.1.0.0\lib\Naif.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="License.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

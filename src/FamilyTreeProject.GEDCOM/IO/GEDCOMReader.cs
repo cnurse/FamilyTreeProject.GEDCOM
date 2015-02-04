@@ -11,6 +11,7 @@ using System.IO;
 
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
+// ReSharper disable UseNullPropagation
 
 namespace FamilyTreeProject.GEDCOM.IO
 {
@@ -30,19 +31,19 @@ namespace FamilyTreeProject.GEDCOM.IO
 
         #region Constructors
 
-        ///// <summary>
-        /////   This constructor creates a GEDCOMReader from a TextReader
-        ///// </summary>
-        ///// <param name = "reader">The TextReader to use</param>
-        //private GEDCOMReader(TextReader reader)
-        //{
-        //    if (reader == null)
-        //    {
-        //        throw new ArgumentNullException("reader");
-        //    }
-        //    _reader = reader;
-        //    GetNextRecord();
-        //}
+        /// <summary>
+        ///   This constructor creates a GEDCOMReader from a TextReader
+        /// </summary>
+        /// <param name = "reader">The TextReader to use</param>
+        private GEDCOMReader(TextReader reader)
+        {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+            _reader = reader;
+            GetNextRecord();
+        }
 
         /// <summary>
         ///   This constructor creates a GEDCOMReader that reads from a Stream
@@ -148,14 +149,14 @@ namespace FamilyTreeProject.GEDCOM.IO
 
         #region Public Static Methods
 
-        ///// <summary>
-        /////   Creates a GEDCOMReader from a TextReader
-        ///// </summary>
-        ///// <param name = "reader">The TextReader to use</param>
-        //public static GEDCOMReader Create(TextReader reader)
-        //{
-        //    return new GEDCOMReader(reader);
-        //}
+        /// <summary>
+        ///   Creates a GEDCOMReader from a TextReader
+        /// </summary>
+        /// <param name = "reader">The TextReader to use</param>
+        public static GEDCOMReader Create(TextReader reader)
+        {
+            return new GEDCOMReader(reader);
+        }
 
         /// <summary>
         ///   Creates a GEDCOMReader that reads from a Stream
@@ -383,7 +384,7 @@ namespace FamilyTreeProject.GEDCOM.IO
 
             if (record == null)
             {
-                return record;
+                return null;
             }
 
             //Pass to RecordFactory to convert the record into the relevant subclass

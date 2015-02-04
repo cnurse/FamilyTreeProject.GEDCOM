@@ -13,6 +13,7 @@ using System.Text;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using Naif.Core.Contracts;
+// ReSharper disable UseNullPropagation
 
 namespace FamilyTreeProject.GEDCOM.IO
 {
@@ -23,14 +24,14 @@ namespace FamilyTreeProject.GEDCOM.IO
 
         #region Constructors
 
-        ///// <summary>
-        /////   This constructor creates a GEDCOMWriter from a TextWriter
-        ///// </summary>
-        ///// <param name = "writer">The TextWriter to use</param>
-        //private GEDCOMWriter(TextWriter writer)
-        //{
-        //    _writer = writer;
-        //}
+        /// <summary>
+        ///   This constructor creates a GEDCOMWriter from a TextWriter
+        /// </summary>
+        /// <param name = "writer">The TextWriter to use</param>
+        private GEDCOMWriter(TextWriter writer)
+        {
+            _writer = writer;
+        }
 
         /// <summary>
         ///   This constructor creates a GEDCOMWriter that writes to a Stream
@@ -74,16 +75,16 @@ namespace FamilyTreeProject.GEDCOM.IO
 
         #region Public Static Methods
 
-        ///// <summary>
-        /////   Creates a GEDCOMWriter from a TextWriter
-        ///// </summary>
-        ///// <param name = "writer">The TextWriter to use</param>
-        //public static GEDCOMWriter Create(TextWriter writer)
-        //{
-        //    Requires.NotNull("writer", writer);
+        /// <summary>
+        ///   Creates a GEDCOMWriter from a TextWriter
+        /// </summary>
+        /// <param name = "writer">The TextWriter to use</param>
+        public static GEDCOMWriter Create(TextWriter writer)
+        {
+            Requires.NotNull("writer", writer);
 
-        //    return new GEDCOMWriter(writer);
-        //}
+            return new GEDCOMWriter(writer);
+        }
 
         /// <summary>
         ///   Creates a GEDCOMWriter that writes to a Stream

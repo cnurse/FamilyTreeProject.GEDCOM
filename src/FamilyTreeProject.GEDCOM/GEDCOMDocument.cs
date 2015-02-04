@@ -16,6 +16,7 @@ using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.IO;
 using FamilyTreeProject.GEDCOM.Records;
 using Naif.Core.Contracts;
+// ReSharper disable ConvertPropertyToExpressionBody
 
 namespace FamilyTreeProject.GEDCOM
 {
@@ -88,109 +89,6 @@ namespace FamilyTreeProject.GEDCOM
 
         #endregion
 
-        #region Private Methods
-
-        ///// <summary>
-        /////   Adds a List of records to the GEDCOM Document
-        ///// </summary>
-        ///// <param name = "records">The list of records to add</param>
-        //private void AddRecords(GEDCOMRecordList records)
-        //{
-        //    Requires.NotNull("records", records);
-
-        //    _records.AddRange(records);
-        //}
-
-        ///// <summary>
-        /////   Loads the GEDCOM Document from a file.
-        ///// </summary>
-        ///// <param name = "fileName">The file name of the file</param>
-        //private void Load(string fileName)
-        //{
-        //    Load(GEDCOMReader.Create(new FileStream(fileName, FileMode.Open, FileAccess.Read)));
-        //}
-
-        ///// <summary>
-        /////   Loads the GEDCOM Document from a TextReader
-        ///// </summary>
-        ///// <param name = "reader">The TextReader to load</param>
-        //private void Load(TextReader reader)
-        //{
-        //    Load(GEDCOMReader.Create(reader));
-        //}
-
-        ///// <summary>
-        /////   Loads the GEDCOM Document from a GEDCOMReader
-        ///// </summary>
-        ///// <param name = "reader">The GEDCOMReader to load.</param>
-        //private void Load(GEDCOMReader reader)
-        //{
-        //    if (reader == null)
-        //    {
-        //        throw new ArgumentNullException("reader");
-        //    }
-
-        //    //Read the GEDCOM file into a GEDCOMRecords Collection
-        //    _records = reader.Read();
-        //    reader.Close();
-        //}
-
-        ///// <summary>
-        /////   Save the GEDCOM Document to a file.
-        ///// </summary>
-        ///// <param name = "fileName">The file name of the file.</param>
-        //private void Save(string fileName)
-        //{
-        //    //Make sure file does not exist
-        //    if (File.Exists(fileName))
-        //    {
-        //        File.Delete(fileName);
-        //    }
-        //    Save(GEDCOMWriter.Create(new FileStream(fileName, FileMode.CreateNew, FileAccess.Write)));
-        //}
-
-        ///// <summary>
-        /////   Save the GEDCOM Document to a TextWriter
-        ///// </summary>
-        ///// <param name = "writer">The TextWriter to save to</param>
-        //private void Save(TextWriter writer)
-        //{
-        //    Save(GEDCOMWriter.Create(writer));
-        //}
-
-        /// <summary>
-        ///   Save the GEDCOM Document to a GEDCOMWriter
-        /// </summary>
-        /// <param name = "writer">The GEDCOMWriter to save to.</param>
-        private void Save(GEDCOMWriter writer)
-        {
-            writer.NewLine = "\n";
-
-            if (SelectTrailer() == null)
-            {
-                AddRecord(new GEDCOMRecord(0, "", "", "TRLR", ""));
-            }
-
-            //Write Header
-            writer.WriteRecord(SelectHeader());
-
-            //Write Submitters
-            writer.WriteRecords(SubmitterRecords, true);
-
-            //Write individuals
-            writer.WriteRecords(IndividualRecords, true);
-
-            //Write families
-            writer.WriteRecords(FamilyRecords, true);
-
-            //Write Trailer
-            writer.WriteRecord(SelectTrailer());
-
-            writer.Flush();
-        }
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
@@ -208,6 +106,17 @@ namespace FamilyTreeProject.GEDCOM
         }
 
         /// <summary>
+        ///   Adds a List of records to the GEDCOM Document
+        /// </summary>
+        /// <param name = "records">The list of records to add</param>
+        public void AddRecords(GEDCOMRecordList records)
+        {
+            Requires.NotNull("records", records);
+
+            _records.AddRange(records);
+        }
+
+        /// <summary>
         ///   Loads the GEDCOM Document from a Stream
         /// </summary>
         /// <param name = "stream">The stream to load</param>
@@ -217,6 +126,30 @@ namespace FamilyTreeProject.GEDCOM
             {
                 _records = reader.Read();
             }
+        }
+
+        /// <summary>
+        ///   Loads the GEDCOM Document from a TextReader
+        /// </summary>
+        /// <param name = "reader">The TextReader to load</param>
+        public void Load(TextReader reader)
+        {
+            Load(GEDCOMReader.Create(reader));
+        }
+
+        /// <summary>
+        ///   Loads the GEDCOM Document from a GEDCOMReader
+        /// </summary>
+        /// <param name = "reader">The GEDCOMReader to load.</param>
+        public void Load(GEDCOMReader reader)
+        {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            //Read the GEDCOM file into a GEDCOMRecords Collection
+            _records = reader.Read();
         }
 
         /// <summary>
@@ -261,6 +194,48 @@ namespace FamilyTreeProject.GEDCOM
             {
                 Save(writer);
             }
+        }
+
+        /// <summary>
+        ///   Save the GEDCOM Document to a TextWriter
+        /// </summary>
+        /// <param name = "writer">The TextWriter to save to</param>
+        public void Save(TextWriter writer)
+        {
+            Save(GEDCOMWriter.Create(writer));
+        }
+
+        /// <summary>
+        ///   Save the GEDCOM Document to a GEDCOMWriter
+        /// </summary>
+        /// <param name = "writer">The GEDCOMWriter to save to.</param>
+        public void Save(GEDCOMWriter writer)
+        {
+            Requires.NotNull("writer", writer);
+
+            writer.NewLine = "\n";
+
+            if (SelectTrailer() == null)
+            {
+                AddRecord(new GEDCOMRecord(0, "", "", "TRLR", ""));
+            }
+
+            //Write Header
+            writer.WriteRecord(SelectHeader());
+
+            //Write Submitters
+            writer.WriteRecords(SubmitterRecords, true);
+
+            //Write individuals
+            writer.WriteRecords(IndividualRecords, true);
+
+            //Write families
+            writer.WriteRecords(FamilyRecords, true);
+
+            //Write Trailer
+            writer.WriteRecord(SelectTrailer());
+
+            writer.Flush();
         }
 
         /// <summary>
