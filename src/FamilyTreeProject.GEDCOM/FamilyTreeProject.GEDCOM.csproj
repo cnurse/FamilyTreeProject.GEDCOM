@@ -79,7 +79,7 @@
       <HintPath>..\..\packages\FamilyTreeProject.Models.0.1.0\lib\FamilyTreeProject.Models.dll</HintPath>
     </Reference>
     <Reference Include="Naif.Core">
-      <HintPath>..\..\packages\Naif.Core.1.0.0\lib\Naif.Core.dll</HintPath>
+      <HintPath>..\..\packages\Naif.Core.1.1.0\lib\Naif.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
