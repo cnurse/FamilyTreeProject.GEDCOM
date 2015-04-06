@@ -539,6 +539,5 @@ namespace FamilyTreeProject.GEDCOM.IO
         }
 
         #endregion
-
     }
 }

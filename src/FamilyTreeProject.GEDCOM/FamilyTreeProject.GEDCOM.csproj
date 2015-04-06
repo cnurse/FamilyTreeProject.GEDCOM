@@ -75,8 +75,9 @@
     <Compile Include="Structures\GEDCOMStructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FamilyTreeProject.Models">
-      <HintPath>..\..\packages\FamilyTreeProject.Models.0.1.0\lib\FamilyTreeProject.Models.dll</HintPath>
+    <Reference Include="FamilyTreeProject.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FamilyTreeProject.Core.0.2.0\lib\FamilyTreeProject.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Naif.Core">
       <HintPath>..\..\packages\Naif.Core.1.1.0\lib\Naif.Core.dll</HintPath>
