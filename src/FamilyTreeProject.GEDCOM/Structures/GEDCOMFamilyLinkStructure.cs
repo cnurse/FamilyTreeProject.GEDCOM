@@ -17,12 +17,12 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Link Structure</h2>
-    ///  n FAMC @<XREF:FAM>@                         {1:1} - Family<br />
-    ///            +1 PEDI <PEDIGREE_LINKAGE_TYPE>         {0:M} - Pedigree<br />
-    ///                      +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  n FAMC @<XREF:FAM>@                       {1:1} - Family<br />
+    ///    +1 PEDI <PEDIGREE_LINKAGE_TYPE>         {0:M} - Pedigree<br />
+    ///    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///		  
-    ///                            n FAMS @<XREF:FAM>@                         {1:1} - Family<br />
-    ///                                      +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  n FAMS @<XREF:FAM>@                       {1:1} - Family<br />
+    ///    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMFamilyLinkStructure : GEDCOMStructure
     {

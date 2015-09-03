@@ -12,7 +12,7 @@ using FamilyTreeProject.GEDCOM.Records;
 namespace FamilyTreeProject.GEDCOM.Structures
 {
     /// <summary>
-    ///   The GEDCOMSourceEventStructure class models the GEDCOM Source Event
+    ///   The GEDCOMSourceEventStructure class models the GEDCOM Source Fact
     /// </summary>
     public class GEDCOMSourceEventStructure : GEDCOMStructure
     {
@@ -31,7 +31,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Public Properties
 
         /// <summary>
-        ///   Gets the Events
+        ///   Gets the Facts
         /// </summary>
         public string Events
         {

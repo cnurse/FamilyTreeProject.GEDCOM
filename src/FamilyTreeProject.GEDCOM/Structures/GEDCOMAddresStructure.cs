@@ -17,19 +17,17 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Address Structure</h2>
     ///  n  ADDR <ADDRESS_LINE>                        {0:1} - Address<br />
-    ///            +1 CONT <ADDRESS_LINE>                      {0:M} - <br />
-    ///                      +1 ADR1 <ADDRESS_LINE1>                     {0:1} - AddressLine1<br />
-    ///                                +1 ADR2 <ADDRESS_LINE2>                     {0:1} - AddressLine2<br />
-    ///                                          +1 CITY <ADDRESS_CITY>                      {0:1} - City<br />
-    ///                                                    +1 STAE <ADDRESS_STATE>                     {0:1} - State<br />
-    ///                                                              +1 POST <ADDRESS_POSTAL_CODE>               {0:1} - PostCode<br />
-    ///                                                                        +1 CTRY <ADDRESS_COUNTRY>                   {0:1} - Country<br />
-    ///                                                                                  n  PHON <PHONE_NUMBER>                        {0:3} - not implemented<br />
+    ///    +1 CONT <ADDRESS_LINE>                      {0:M} - <br />
+    ///    +1 ADR1 <ADDRESS_LINE1>                     {0:1} - AddressLine1<br />
+    ///    +1 ADR2 <ADDRESS_LINE2>                     {0:1} - AddressLine2<br />
+    ///    +1 CITY <ADDRESS_CITY>                      {0:1} - City<br />
+    ///    +1 STAE <ADDRESS_STATE>                     {0:1} - State<br />
+    ///    +1 POST <ADDRESS_POSTAL_CODE>               {0:1} - PostCode<br />
+    ///    +1 CTRY <ADDRESS_COUNTRY>                   {0:1} - Country<br />
+    ///  n  PHON <PHONE_NUMBER>                        {0:3} - not implemented<br />
     ///</remarks>
     public class GEDCOMAddressStructure : GEDCOMStructure
     {
-        #region Constructors
-
         public GEDCOMAddressStructure() : base(new GEDCOMRecord(1, "", "", "ADDR", ""))
         {
         }
@@ -49,10 +47,6 @@ namespace FamilyTreeProject.GEDCOM.Structures
         public GEDCOMAddressStructure(GEDCOMRecord record) : base(record)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///   Gets the Address
@@ -116,7 +110,5 @@ namespace FamilyTreeProject.GEDCOM.Structures
             get { return GetChildData(GEDCOMTag.CTRY); }
             set { SetChildData(GEDCOMTag.CTRY, value); }
         }
-
-        #endregion
     }
 }

@@ -15,14 +15,14 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///   The GEDCOMHeaderSourceStructure class models the GEDCOM Header Records Source Structure
     /// </summary>
     /// <remarks>
-    ///   +1 SOUR <APPROVED_SYSTEM_ID>                   {1:1} - Source<br />
-    ///             +2 VERS <VERSION_NUMBER>                   {0:1} - Version<br />
-    ///                       +2 NAME <NAME_OF_PRODUCT>                  {0:1} - ProductName<br />
-    ///                                 +2 CORP <NAME_OF_BUSINESS>                 {0:1} - Company<br />
-    ///                                           +3 <<ADDRESS_STRUCTURE>>               {0:1} - Address<br />
-    ///                                                 +2 DATA <NAME_OF_SOURCE_DATA>              {0:1} - SourceData<br />
-    ///                                                           +3 DATE <PUBLICATION_DATE>             {0:1} - PublicationDate<br />
-    ///                                                                     +3 COPR <COPYRIGHT_SOURCE_DATA>        {0:1} - SourceCopyright<br />
+    ///   +1 SOUR <APPROVED_SYSTEM_ID>               {1:1} - Source<br />
+    ///     +2 VERS <VERSION_NUMBER>                 {0:1} - Version<br />
+    ///     +2 NAME <NAME_OF_PRODUCT>                {0:1} - ProductName<br />
+    ///     +2 CORP <NAME_OF_BUSINESS>               {0:1} - Company<br />
+    ///       +3 <<ADDRESS_STRUCTURE>>               {0:1} - Address<br />
+    ///     +2 DATA <NAME_OF_SOURCE_DATA>            {0:1} - SourceData<br />
+    ///       +3 DATE <PUBLICATION_DATE>             {0:1} - PublicationDate<br />
+    ///       +3 COPR <COPYRIGHT_SOURCE_DATA>        {0:1} - SourceCopyright<br />
     /// </remarks>
     public class GEDCOMHeaderSourceStructure : GEDCOMStructure
     {

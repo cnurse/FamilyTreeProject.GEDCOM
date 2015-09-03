@@ -20,14 +20,14 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Personal Name Structure</h2>
     ///  n  NAME <NAME_PERSONAL>						{1:1} - FullName<br />
-    ///            +1 NPFX <NAME_PIECE_PREFIX>				    {0:1} - Prefix<br />
-    ///                      +1 GIVN <NAME_PIECE_GIVEN>				    {0:1} - GivenName<br />
-    ///                                +1 NICK <NAME_PIECE_NICKNAME>		        {0:1} - NickName<br />
-    ///                                          +1 SPFX <NAME_PIECE_SURNAME_PREFIX>         {0:1} - LastNamePrefix<br />
-    ///                                                    +1 SURN <NAME_PIECE_SURNAME>			    {0:1} - LastName<br />
-    ///                                                              +1 NSFX <NAME_PIECE_SUFFIX>				    {0:1} - Suffix<br />
-    ///                                                                        +1 <<SOURCE_CITATION>>					    {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
-    ///                                                                              +1 <<NOTE_STRUCTURE>>					    {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///    +1 NPFX <NAME_PIECE_PREFIX>				    {0:1} - Prefix<br />
+    ///    +1 GIVN <NAME_PIECE_GIVEN>				    {0:1} - GivenName<br />
+    ///    +1 NICK <NAME_PIECE_NICKNAME>		        {0:1} - NickName<br />
+    ///    +1 SPFX <NAME_PIECE_SURNAME_PREFIX>          {0:1} - LastNamePrefix<br />
+    ///    +1 SURN <NAME_PIECE_SURNAME>			        {0:1} - LastName<br />
+    ///    +1 NSFX <NAME_PIECE_SUFFIX>				    {0:1} - Suffix<br />
+    ///    +1 <<SOURCE_CITATION>>					    {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
+    ///    +1 <<NOTE_STRUCTURE>>					    {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMNameStructure : GEDCOMStructure
     {

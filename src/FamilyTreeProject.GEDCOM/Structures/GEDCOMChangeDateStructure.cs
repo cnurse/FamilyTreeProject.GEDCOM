@@ -18,10 +18,10 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Change Date</h2>
-    ///  n  CHAN                          {1:1} - <br />
-    ///  +1 DATE <CHANGE_DATE>        {1:1} - ChangeDate<br />
-    ///            +2 TIME <TIME_VALUE>     {0:1} - <br />
-    ///                      +1 <<NOTE_STRUCTURE>>        {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  n  CHAN                        {1:1} - <br />
+    ///    +1 DATE <CHANGE_DATE>        {1:1} - ChangeDate<br />
+    ///      +2 TIME <TIME_VALUE>       {0:1} - <br />
+    ///    +1 <<NOTE_STRUCTURE>>        {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMChangeDateStructure : GEDCOMStructure
     {

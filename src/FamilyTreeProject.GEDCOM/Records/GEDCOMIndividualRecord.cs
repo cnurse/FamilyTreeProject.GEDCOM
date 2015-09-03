@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using FamilyTreeProject.Common;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Structures;
+// ReSharper disable ConvertPropertyToExpressionBody
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
@@ -19,34 +20,32 @@ namespace FamilyTreeProject.GEDCOM.Records
     /// </summary>
     /// <remarks>
     ///   <h2>GEDCOM 5.5 Individual Record</h2>
-    ///   n @XREF:INDI@ INDI                          {1:1} <i>see GEDCOMRecord</i><br />
-    ///   +1 RESN <RESTRICTION_NOTICE>            {0:1} - RestrictionNotice<br />
-    ///             +1 <<PERSONAL_NAME_STRUCTURE>>          {0:M} - Name<br />
-    ///                   +1 SEX <SEX_VALUE>                      {0:1} - Sex<br />
-    ///                            +1 <<INDIVIDUAL_EVENT_STRUCTURE>>       {0:M} - Events<br />
-    ///                                  +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>>   {0:M} - Attributes<br />
-    ///                                        +1 <<LDS_INDIVIDUAL_ORDINANCE>>         {0:M} - not implemented<br />
-    ///                                              +1 <<CHILD_TO_FAMILY_LINK>>             {0:M} - FamilyLinks<br />
-    ///                                                    +1 <<SPOUSE_TO_FAMILY_LINK>>            {0:M} - FamilyLinks<br />
-    ///                                                          +1 SUBM @<XREF:SUBM>@                   {0:M} - Submitters<br />
-    ///                                                                     +1 <<ASSOCIATION_STRUCTURE>>            {0:M} - Associations<br />
-    ///                                                                           +1 ALIA @<XREF:INDI>@                   {0:M} - Aliases<br />
-    ///                                                                                      +1 ANCI @<XREF:SUBM>@                   {0:M} - AncestorInterests<br />
-    ///                                                                                                 +1 DESI @<XREF:SUBM>@                   {0:M} - DescendantInterests<br />
-    ///                                                                                                            +1 <<SOURCE_CITATION>>                  {0:M} - <i>see GEDCOMBaseRecord - SourceCitations<br />
-    ///                                                                                                                                                              +1 <<MULTIMEDIA_LINK>>                  {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
-    ///                                                                                                                                                                    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
-    ///                                                                                                                                                                          +1 RFN <PERMANENT_RECORD_FILE_NUMBER>   {0:1} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
-    ///                                                                                                                                                                                   +1 AFN <ANCESTRAL_FILE_NUMBER>          {0:1} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
-    ///                                                                                                                                                                                            +1 REFN <USER_REFERENCE_NUMBER>         {0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
-    ///                                                                                                                                                                                                      +2 TYPE <USER_REFERENCE_TYPE>       {0:1} - <br />
-    ///                                                                                                                                                                                                                +1 RIN <AUTOMATED_RECORD_ID>            {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
-    ///                                                                                                                                                                                                                         +1 <<CHANGE_DATE>>                      {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
+    ///   n @XREF:INDI@ INDI                        {1:1} <i>see GEDCOMRecord</i><br />
+    ///     +1 RESN <RESTRICTION_NOTICE>            {0:1} - RestrictionNotice<br />
+    ///     +1 <<PERSONAL_NAME_STRUCTURE>>          {0:M} - Name<br />
+    ///     +1 SEX <SEX_VALUE>                      {0:1} - Sex<br />
+    ///     +1 <<INDIVIDUAL_EVENT_STRUCTURE>>       {0:M} - Facts<br />
+    ///     +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>>   {0:M} - Attributes<br />
+    ///     +1 <<LDS_INDIVIDUAL_ORDINANCE>>         {0:M} - not implemented<br />
+    ///     +1 <<CHILD_TO_FAMILY_LINK>>             {0:M} - FamilyLinks<br />
+    ///     +1 <<SPOUSE_TO_FAMILY_LINK>>            {0:M} - FamilyLinks<br />
+    ///     +1 SUBM @<XREF:SUBM>@                   {0:M} - Submitters<br />
+    ///     +1 <<ASSOCIATION_STRUCTURE>>            {0:M} - Associations<br />
+    ///     +1 ALIA @<XREF:INDI>@                   {0:M} - Aliases<br />
+    ///     +1 ANCI @<XREF:SUBM>@                   {0:M} - AncestorInterests<br />
+    ///     +1 DESI @<XREF:SUBM>@                   {0:M} - DescendantInterests<br />
+    ///     +1 <<SOURCE_CITATION>>                  {0:M} - <i>see GEDCOMBaseRecord - SourceCitations<br />
+    ///     +1 <<MULTIMEDIA_LINK>>                  {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
+    ///     +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
+    ///     +1 RFN <PERMANENT_RECORD_FILE_NUMBER>   {0:1} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
+    ///     +1 AFN <ANCESTRAL_FILE_NUMBER>          {0:1} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
+    ///     +1 REFN <USER_REFERENCE_NUMBER>         {0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
+    ///       +2 TYPE <USER_REFERENCE_TYPE>         {0:1} - <br />
+    ///     +1 RIN <AUTOMATED_RECORD_ID>            {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
+    ///     +1 <<CHANGE_DATE>>                      {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
     /// </remarks>
     public class GEDCOMIndividualRecord : GEDCOMBaseRecord
     {
-        #region Constructors
-
         /// <summary>
         ///   Constructs a GEDCOMIndividualRecord
         /// </summary>
@@ -61,10 +60,6 @@ namespace FamilyTreeProject.GEDCOM.Records
         public GEDCOMIndividualRecord(GEDCOMRecord record) : base(record)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///   Gets the Alias XRefIds for this Individual
@@ -107,7 +102,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         }
 
         /// <summary>
-        ///   Gets the Events for this Individual
+        ///   Gets the Facts for this Individual
         /// </summary>
         public List<GEDCOMEventStructure> Events
         {
@@ -203,7 +198,5 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
             get { return ChildRecords.GetXRefIDs(GEDCOMTag.SUBM); }
         }
-
-        #endregion
     }
 }

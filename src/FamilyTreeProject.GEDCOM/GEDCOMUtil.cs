@@ -62,12 +62,11 @@ namespace FamilyTreeProject.GEDCOM
 
         public static string CreateId(string prefix, long id)
         {
-            string sId = String.Empty;
-            if (id > 0)
+            if (id < 0)
             {
-                sId = string.Format("@{0}{1}@", prefix, id);
+                id = -id;
             }
-            return sId;
+            return String.Format("@{0}{1}@", prefix, id);
         }
 
         public static int GetId(string idString)

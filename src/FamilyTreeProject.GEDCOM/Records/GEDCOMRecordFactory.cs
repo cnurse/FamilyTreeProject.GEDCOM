@@ -88,7 +88,7 @@ namespace FamilyTreeProject.GEDCOM.Records
                 case GEDCOMTag.SUBN:
                     return CreateSubmissionRecord(record);
                 default:
-                    //Check if the tag is an Event type tag
+                    //Check if the tag is an Fact type tag
                     EventClass eventClass = GEDCOMUtil.GetEventClass(record.Tag);
                     if (eventClass != EventClass.Unknown)
                     {

@@ -15,84 +15,105 @@ using FamilyTreeProject.GEDCOM.Records;
 namespace FamilyTreeProject.GEDCOM.Structures
 {
     ///<summary>
-    ///  The GEDCOMEventStructure Class models Genealogical Event Records and
+    ///  The GEDCOMEventStructure Class models Genealogical Fact Records and
     ///  Attribute Records.
     ///</summary>
     ///<remarks>
-    ///  <h2>GEDCOM 5.5 Event Structure</h2>
+    ///  <h2>GEDCOM 5.5 Fact Structure</h2>
     ///  n  [ BIRT | CHR ] [Y|<NULL>]                    {1:1} <br />
-    ///                         +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                               +1 FAMC @<XREF:FAM>@                        {0:1}
-    ///                                          n  [ DEAT | BURI | CREM ] [Y|<NULL>]            {1:1} <br />
-    ///                                                                         +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                               n  ADOP [Y|<NULL>]                              {1:1} <br />
-    ///                                                                                            +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                  +1 FAMC @<XREF:FAM>@                        {0:1}
-    ///                                                                                                             +2 ADOP <ADOPTED_BY_WHICH_PARENT>       {0:1}
-    ///                                                                                                                       n  [ BAPM | BARM | BASM | BLES ] [Y|<NULL>]     {1:1} <br />
-    ///                                                                                                                                                             +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                   n  [ CHRA | CONF | FCOM | ORDN ] [Y|<NULL>]     {1:1} <br />
-    ///                                                                                                                                                                                                         +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                               n  [ NATU | EMIG | IMMI ] [Y|<NULL>]            {1:1} <br />
-    ///                                                                                                                                                                                                                                              +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                    n  [ CENS | PROB | WILL] [Y|<NULL>]             {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                  +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                        n  [ GRAD | RETI ] [Y|<NULL>]                   {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                      n  [ ANUL | CENS | DIV | DIVF ] [Y|<NULL>]      {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                 n  [ ENGA | MARR | MARB | MARC ] [Y|<NULL>]     {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                       +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                             n  [ MARL | MARS ] [Y|<NULL>]                   {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                     +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                           n  EVEN                                         {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>                         {0:1} <i>see Below</i><br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    +1 FAMC @<XREF:FAM>@                          {0:1}
+    ///  
+    ///  n  [ DEAT | BURI | CREM ] [Y|<NULL>]            {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  ADOP [Y|<NULL>]                              {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    +1 FAMC @<XREF:FAM>@                          {0:1}
+    ///      +2 ADOP <ADOPTED_BY_WHICH_PARENT>           {0:1}
+    ///    
+    ///  n  [ BAPM | BARM | BASM | BLES ] [Y|<NULL>]     {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  [ CHRA | CONF | FCOM | ORDN ] [Y|<NULL>]     {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  [ NATU | EMIG | IMMI ] [Y|<NULL>]            {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  [ CENS | PROB | WILL] [Y|<NULL>]             {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  [ GRAD | RETI ] [Y|<NULL>]                   {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  [ ANUL | CENS | DIV | DIVF ] [Y|<NULL>]      {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  [ ENGA | MARR | MARB | MARC ] [Y|<NULL>]     {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  [ MARL | MARS ] [Y|<NULL>]                   {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  EVEN                                         {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
     ///
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                 <h2>GEDCOM 5.5 Attribute Structure</h2>
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  CAST <CASTE_NAME>                  {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  DSCR <PHYSICAL_DESCRIPTION>        {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  EDUC <SCHOLASTIC_ACHIEVEMENT>      {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  IDNO <NATIONAL_ID_NUMBER>          {1:1}*<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  NATI <NATIONAL_OR_TRIBAL_ORIGIN>   {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  NCHI <COUNT_OF_CHILDREN>           {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 n  NMR <COUNT_OF_MARRIAGES>           {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                n  OCCU <OCCUPATION>                  {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                n  PROP <POSSESSIONS>                 {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                n  RELI <RELIGIOUS_AFFILIATION>       {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                n  RESI                               {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      n  SSN <SOCIAL_SECURITY_NUMBER>       {0:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     n  TITL <NOBILITY_TYPE_TITLE>         {1:1} <br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               +1 <<EVENT_DETAIL>>               {0:1} <i>see Below</i><br />
+    ///  <h2>GEDCOM 5.5 Attribute Structure</h2>
+    ///  n  CAST <CASTE_NAME>                            {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  DSCR <PHYSICAL_DESCRIPTION>                  {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  EDUC <SCHOLASTIC_ACHIEVEMENT>                {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  IDNO <NATIONAL_ID_NUMBER>                    {1:1}*<br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  NATI <NATIONAL_OR_TRIBAL_ORIGIN>             {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  NCHI <COUNT_OF_CHILDREN>                     {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  NMR <COUNT_OF_MARRIAGES>                     {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  OCCU <OCCUPATION>                            {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///    
+    ///  n  PROP <POSSESSIONS>                           {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  RELI <RELIGIOUS_AFFILIATION>                 {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  RESI                                         {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  SSN <SOCIAL_SECURITY_NUMBER>                 {0:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
+    ///  
+    ///  n  TITL <NOBILITY_TYPE_TITLE>                   {1:1} <br />
+    ///    +1 <<EVENT_DETAIL>>                           {0:1} <i>see Below</i><br />
     ///
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <h3>GEDCOM 5.5 Event Detail</h3>
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     n  TYPE <EVENT_DESCRIPTOR>          {0:1} - TypeDetail<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               n  DATE <DATE_VALUE>                {0:1} - Date<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         n  <<PLACE_STRUCTURE>>              {0:1} - Place<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               n  <<ADDRESS_STRUCTURE>>            {0:1} - Address/Phones<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     n  AGE <AGE_AT_EVENT>               {0:1} - Age<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              n  AGNC <RESPONSIBLE_AGENCY>        {0:1} - Agency<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        n  CAUS <CAUSE_OF_EVENT>            {0:1} - Cause<br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  n  <<SOURCE_CITATION>>              {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        n  <<MULTIMEDIA_LINK>>              {0:M} - <i>see GEDCOMStructure - Multimedia</i><br />
-    ///                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              n  <<NOTE_STRUCTURE>>               {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  <h3>GEDCOM 5.5 Fact Detail</h3>
+    ///  n  TYPE <EVENT_DESCRIPTOR>                      {0:1} - TypeDetail<br />
+    ///  n  DATE <DATE_VALUE>                            {0:1} - Date<br />
+    ///  n  <<PLACE_STRUCTURE>>                          {0:1} - Place<br />
+    ///  n  <<ADDRESS_STRUCTURE>>                        {0:1} - Address/Phones<br />
+    ///  n  AGE <AGE_AT_EVENT>                           {0:1} - Age<br />
+    ///  n  AGNC <RESPONSIBLE_AGENCY>                    {0:1} - Agency<br />
+    ///  n  CAUS <CAUSE_OF_EVENT>                        {0:1} - Cause<br />
+    ///  n  <<SOURCE_CITATION>>                          {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
+    ///  n  <<MULTIMEDIA_LINK>>                          {0:M} - <i>see GEDCOMStructure - Multimedia</i><br />
+    ///  n  <<NOTE_STRUCTURE>>                           {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMEventStructure : GEDCOMStructure
     {
-        private readonly EventClass eventClass = EventClass.Unknown;
-
-        #region Constructors
+        private readonly EventClass _eventClass = EventClass.Unknown;
 
         /// <summary>
         ///   Constructs a GEDCOMEventStructure from a GEDCOMRecord
@@ -109,7 +130,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// <param name = "eventClass"></param>
         public GEDCOMEventStructure(GEDCOMRecord record, EventClass eventClass) : base(record)
         {
-            this.eventClass = eventClass;
+            _eventClass = eventClass;
         }
 
         public GEDCOMEventStructure(int level, string tag, string date, string place) : base(new GEDCOMRecord(level, "", "", tag, ""))
@@ -120,10 +141,6 @@ namespace FamilyTreeProject.GEDCOM.Structures
             var placeRecord = new GEDCOMPlaceStructure(level + 1, place);
             ChildRecords.Add(placeRecord);
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///   Gets the Address connected to this event
@@ -204,13 +221,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// </summary>
         public EventClass EventClass
         {
-            get { return eventClass; }
+            get { return _eventClass; }
         }
 
         /// <summary>
         ///   Gets the Type of the event
         /// </summary>
-        public FamilyEventType FamilyEventType
+        public FactType FamilyEventType
         {
             get
             {
@@ -219,32 +236,32 @@ namespace FamilyTreeProject.GEDCOM.Structures
                     switch (TagName)
                     {
                         case GEDCOMTag.ANUL:
-                            return FamilyEventType.Annulment;
+                            return FactType.Annulment;
                         case GEDCOMTag.DIV:
-                            return FamilyEventType.Divorce;
+                            return FactType.Divorce;
                         case GEDCOMTag.DIVF:
-                            return FamilyEventType.DivorceFiled;
+                            return FactType.DivorceFiled;
                         case GEDCOMTag.ENGA:
-                            return FamilyEventType.Engagement;
+                            return FactType.Engagement;
                         case GEDCOMTag.MARR:
-                            return FamilyEventType.Marriage;
+                            return FactType.Marriage;
                         case GEDCOMTag.MARB:
-                            return FamilyEventType.MarriageBann;
+                            return FactType.MarriageBann;
                         case GEDCOMTag.MARC:
-                            return FamilyEventType.MarriageContract;
+                            return FactType.MarriageContract;
                         case GEDCOMTag.MARL:
-                            return FamilyEventType.MarriageLicense;
+                            return FactType.MarriageLicense;
                         case GEDCOMTag.MARS:
-                            return FamilyEventType.MarriageSettlement;
+                            return FactType.MarriageSettlement;
                         case GEDCOMTag.EVEN:
-                            return FamilyEventType.Other;
+                            return FactType.Other;
                         default:
-                            return FamilyEventType.Unknown;
+                            return FactType.Unknown;
                     }
                 }
                 else
                 {
-                    return FamilyEventType.Unknown;
+                    return FactType.Unknown;
                 }
             }
         }
@@ -252,7 +269,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// <summary>
         ///   Gets the Type of the event
         /// </summary>
-        public IndividualAttributeType IndividualAttributeType
+        public FactType IndividualAttributeType
         {
             get
             {
@@ -261,38 +278,38 @@ namespace FamilyTreeProject.GEDCOM.Structures
                     switch (TagName)
                     {
                         case GEDCOMTag.CAST:
-                            return IndividualAttributeType.Caste;
+                            return FactType.Caste;
                         case GEDCOMTag.DSCR:
-                            return IndividualAttributeType.Attribute;
+                            return FactType.Description;
                         case GEDCOMTag.EDUC:
-                            return IndividualAttributeType.Education;
+                            return FactType.Education;
                         case GEDCOMTag.IDNO:
-                            return IndividualAttributeType.NationalID;
+                            return FactType.IdNumber;
                         case GEDCOMTag.NATI:
-                            return IndividualAttributeType.Nationality;
+                            return FactType.NationalOrTribalOrigin;
                         case GEDCOMTag.NCHI:
-                            return IndividualAttributeType.Children;
+                            return FactType.NoOfChildren;
                         case GEDCOMTag.NMR:
-                            return IndividualAttributeType.Marriages;
+                            return FactType.NoOfMarriages;
                         case GEDCOMTag.OCCU:
-                            return IndividualAttributeType.Occupation;
+                            return FactType.Occupation;
                         case GEDCOMTag.PROP:
-                            return IndividualAttributeType.Property;
+                            return FactType.Property;
                         case GEDCOMTag.RELI:
-                            return IndividualAttributeType.Religion;
+                            return FactType.Religion;
                         case GEDCOMTag.RESI:
-                            return IndividualAttributeType.Residence;
+                            return FactType.Residence;
                         case GEDCOMTag.SSN:
-                            return IndividualAttributeType.SSN;
+                            return FactType.SocialSecurityNumber;
                         case GEDCOMTag.TITL:
-                            return IndividualAttributeType.Title;
+                            return FactType.Title;
                         default:
-                            return IndividualAttributeType.Unknown;
+                            return FactType.Unknown;
                     }
                 }
                 else
                 {
-                    return IndividualAttributeType.Unknown;
+                    return FactType.Unknown;
                 }
             }
         }
@@ -300,7 +317,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// <summary>
         ///   Gets the Type of the event
         /// </summary>
-        public IndividualEventType IndividualEventType
+        public FactType IndividualEventType
         {
             get
             {
@@ -309,58 +326,58 @@ namespace FamilyTreeProject.GEDCOM.Structures
                     switch (TagName)
                     {
                         case GEDCOMTag.ADOP:
-                            return IndividualEventType.Adoption;
+                            return FactType.Adoption;
                         case GEDCOMTag.BAPM:
-                            return IndividualEventType.Baptism;
+                            return FactType.Baptism;
                         case GEDCOMTag.BARM:
-                            return IndividualEventType.BarMitzvah;
+                            return FactType.BarMitzvah;
                         case GEDCOMTag.BASM:
-                            return IndividualEventType.BasMitzvah;
+                            return FactType.BasMitzvah;
                         case GEDCOMTag.BIRT:
-                            return IndividualEventType.Birth;
+                            return FactType.Birth;
                         case GEDCOMTag.BLES:
-                            return IndividualEventType.Blessing;
+                            return FactType.Blessing;
                         case GEDCOMTag.BURI:
-                            return IndividualEventType.Burial;
+                            return FactType.Burial;
                         case GEDCOMTag.CENS:
-                            return IndividualEventType.Census;
+                            return FactType.Census;
                         case GEDCOMTag.CHR:
-                            return IndividualEventType.Christening;
+                            return FactType.Christening;
                         case GEDCOMTag.CHRA:
-                            return IndividualEventType.AdultChristening;
+                            return FactType.AdultChristening;
                         case GEDCOMTag.CONF:
-                            return IndividualEventType.Confirmation;
+                            return FactType.Confirmation;
                         case GEDCOMTag.CREM:
-                            return IndividualEventType.Cremation;
+                            return FactType.Cremation;
                         case GEDCOMTag.DEAT:
-                            return IndividualEventType.Death;
+                            return FactType.Death;
                         case GEDCOMTag.EMIG:
-                            return IndividualEventType.Emigration;
+                            return FactType.Emigration;
                         case GEDCOMTag.FCOM:
-                            return IndividualEventType.FirstCommunion;
+                            return FactType.FirstCommunion;
                         case GEDCOMTag.GRAD:
-                            return IndividualEventType.Graduation;
+                            return FactType.Graduation;
                         case GEDCOMTag.IMMI:
-                            return IndividualEventType.Immigration;
+                            return FactType.Immigration;
                         case GEDCOMTag.NATU:
-                            return IndividualEventType.Naturalisation;
+                            return FactType.Naturalisation;
                         case GEDCOMTag.ORDN:
-                            return IndividualEventType.Ordination;
+                            return FactType.Ordination;
                         case GEDCOMTag.PROB:
-                            return IndividualEventType.Probate;
+                            return FactType.Probate;
                         case GEDCOMTag.RETI:
-                            return IndividualEventType.Retirement;
+                            return FactType.Retirement;
                         case GEDCOMTag.WILL:
-                            return IndividualEventType.Will;
+                            return FactType.Will;
                         case GEDCOMTag.EVEN:
-                            return IndividualEventType.Other;
+                            return FactType.Other;
                         default:
-                            return IndividualEventType.Unknown;
+                            return FactType.Unknown;
                     }
                 }
                 else
                 {
-                    return IndividualEventType.Unknown;
+                    return FactType.Unknown;
                 }
             }
         }
@@ -402,7 +419,5 @@ namespace FamilyTreeProject.GEDCOM.Structures
         {
             get { return ChildRecords.GetRecordData(GEDCOMTag.TYPE); }
         }
-
-        #endregion
     }
 }

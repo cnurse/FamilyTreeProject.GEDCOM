@@ -16,13 +16,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 MultiMedia Link Structure</h2>
-    ///  n  OBJE @<XREF:OBJE>@                        {1:1} - MultimediaRecord<br />
+    ///  n  OBJE @<XREF:OBJE>@                      {1:1} - MultimediaRecord<br />
     ///
-    ///             n  OBJE                                      {1:1} - <br />
-    ///             +1 FORM <MULTIMEDIA_FORMAT>              {1:1} - Format<br />
-    ///                       +1 TITL <DESCRIPTIVE_TITLE>              {0:1} - Title<br />
-    ///                                 +1 FILE <MULTIMEDIA_FILE_REFERENCE>      {1:1} - FileReference<br />
-    ///                                           +1 <<NOTE_STRUCTURE>>                    {0:M} - <i>see GEDCOMStructure - Notes<br />
+    ///  n  OBJE                                    {1:1} - <br />
+    ///    +1 FORM <MULTIMEDIA_FORMAT>              {1:1} - Format<br />
+    ///    +1 TITL <DESCRIPTIVE_TITLE>              {0:1} - Title<br />
+    ///    +1 FILE <MULTIMEDIA_FILE_REFERENCE>      {1:1} - FileReference<br />
+    ///    +1 <<NOTE_STRUCTURE>>                    {0:M} - <i>see GEDCOMStructure - Notes<br />
     ///</remarks>
     public class GEDCOMMultimediaStructure : GEDCOMStructure
     {

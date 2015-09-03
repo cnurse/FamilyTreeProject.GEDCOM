@@ -16,9 +16,9 @@ namespace FamilyTreeProject.GEDCOM.Structures
     /// <remarks>
     ///   <h2>GEDCOM 5.5 Place Structure</h2>
     ///   n PLAC <PLACE_VALUE>                {1:1} - <br />
-    ///            +1 FORM <PLACE_HIERARCHY>       {0:1} - not implemented<br />
-    ///                      +1 <<SOURCE_CITATION>>          {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
-    ///                            +1 <<NOTE_STRUCTURE>>           {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///     +1 FORM <PLACE_HIERARCHY>       {0:1} - not implemented<br />
+    ///     +1 <<SOURCE_CITATION>>          {0:M} - <i>see GEDCOMStructure - SourceCitations</i><br />
+    ///     +1 <<NOTE_STRUCTURE>>           {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     /// </remarks>
     public class GEDCOMPlaceStructure : GEDCOMStructure
     {

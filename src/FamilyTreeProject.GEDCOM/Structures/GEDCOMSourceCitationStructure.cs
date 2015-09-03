@@ -20,29 +20,27 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Source Citation Structure</h2>
-    ///  n  SOUR @<XREF:SOUR>@                                {1:1} - <i>see GEDCOMRecord - XRefId</i><br />
-    ///             +1 PAGE <WHERE_WITHIN_SOURCE>                    {0:1} - Page<br />
-    ///                       +1 EVEN <EVENT_TYPE_CITED_FROM>                  {0:1} - EventType<br />
-    ///                                 +2 ROLE <ROLE_IN_EVENT>                      {0:1} - Role<br />
-    ///                                           +1 DATA                                          {0:1} - CitationData<br />
-    ///                                           +2 DATE <ENTRY_RECORDING_DATE>               {0:1} - Date<br />
-    ///                                                     +2 TEXT <TEXT_FROM_SOURCE>                   {0:M} - Text<br />
-    ///                                                               +3 [ CONC | CONT ] <TEXT_FROM_SOURCE>    {0:M} - <br />
-    ///                                                                                    +1 QUAY <CERTAINTY_ASSESSMENT>                   {0:1} - Quality<br />
-    ///                                                                                              +1 <<MULTIMEDIA_LINK>>                           {0:M} - <i>see GEDCOMStructure - Multimedia</i><br />
-    ///                                                                                                    +1 <<NOTE_STRUCTURE>>                            {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  n  SOUR @<XREF:SOUR>@                          {1:1} - <i>see GEDCOMRecord - XRefId</i><br />
+    ///    +1 PAGE <WHERE_WITHIN_SOURCE>                {0:1} - Page<br />
+    ///    +1 EVEN <EVENT_TYPE_CITED_FROM>              {0:1} - FactType<br />
+    ///      +2 ROLE <ROLE_IN_EVENT>                    {0:1} - Role<br />
+    ///    +1 DATA                                      {0:1} - CitationData<br />
+    ///      +2 DATE <ENTRY_RECORDING_DATE>             {0:1} - Date<br />
+    ///      +2 TEXT <TEXT_FROM_SOURCE>                 {0:M} - Text<br />
+    ///        +3 [ CONC | CONT ] <TEXT_FROM_SOURCE>    {0:M} - <br />
+    ///    +1 QUAY <CERTAINTY_ASSESSMENT>               {0:1} - Quality<br />
+    ///    +1 <<MULTIMEDIA_LINK>>                       {0:M} - <i>see GEDCOMStructure - Multimedia</i><br />
+    ///    +1 <<NOTE_STRUCTURE>>                        {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///
-    ///                                                                                                          -- Systems not using source records --
-    ///                                                                                                          n  SOUR <SOURCE_DESCRIPTION>                         {1:1} - Description<br />
-    ///                                                                                                                    +1 [ CONC | CONT ] <SOURCE_DESCRIPTION>          {0:M} - <br />
-    ///                                                                                                                                         +1 TEXT <TEXT_FROM_SOURCE>                       {0:M} - Text<br />
-    ///                                                                                                                                                   +2 [CONC | CONT ] <TEXT_FROM_SOURCE>         {0:M} - <br />
-    ///                                                                                                                                                                       +1 <<NOTE_STRUCTURE>>                            {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  -- Systems not using source records --
+    ///  n  SOUR <SOURCE_DESCRIPTION>                   {1:1} - Description<br />
+    ///    +1 [ CONC | CONT ] <SOURCE_DESCRIPTION>      {0:M} - <br />
+    ///    +1 TEXT <TEXT_FROM_SOURCE>                   {0:M} - Text<br />
+    ///      +2 [CONC | CONT ] <TEXT_FROM_SOURCE>       {0:M} - <br />
+    ///    +1 <<NOTE_STRUCTURE>>                        {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMSourceCitationStructure : GEDCOMStructure
     {
-        #region Constructors
-
         /// <summary>
         ///   Constructs a GEDCOMSourceCitationStructure from a GEDCOMRecord
         /// </summary>
@@ -50,10 +48,6 @@ namespace FamilyTreeProject.GEDCOM.Structures
         public GEDCOMSourceCitationStructure(GEDCOMRecord record) : base(record)
         {
         }
-
-        #endregion
-
-        #region Protected Properties
 
         /// <summary>
         ///   Gets the Data Record
@@ -63,12 +57,8 @@ namespace FamilyTreeProject.GEDCOM.Structures
             get { return ChildRecords.GetLineByTag<GEDCOMRecord>(GEDCOMTag.DATA); }
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
-        ///   Gets the Entry Date
+        ///   Gets the Citation Date
         /// </summary>
         public string Date
         {
@@ -126,7 +116,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
         }
 
         /// <summary>
-        ///   Gets the Source EventType
+        ///   Gets the Source FactType
         /// </summary>
         public string EventType
         {
@@ -175,6 +165,20 @@ namespace FamilyTreeProject.GEDCOM.Structures
             }
         }
 
-        #endregion
+        /// <summary>
+        ///   Gets the Citation Text
+        /// </summary>
+        public string Text
+        {
+            get
+            {
+                string text = String.Empty;
+                if (CitationData != null)
+                {
+                    text = CitationData.ChildRecords.GetRecordData(GEDCOMTag.TEXT);
+                }
+                return text;
+            }
+        }
     }
 }

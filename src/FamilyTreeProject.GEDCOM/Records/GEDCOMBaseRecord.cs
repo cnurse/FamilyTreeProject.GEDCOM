@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Structures;
+// ReSharper disable ConvertPropertyToExpressionBody
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
@@ -18,11 +19,8 @@ namespace FamilyTreeProject.GEDCOM.Records
     ///   Records, by providing support for Change Dates,  a Collection 
     ///   of Notes and a collection of Source Citations.
     /// </summary>
-    /// <remarks>
     public class GEDCOMBaseRecord : GEDCOMRecord
     {
-        #region Constructors
-
         /// <summary>
         ///   Constructs a GEDCOMBaseRecord from a GEDCOMRecord
         /// </summary>
@@ -30,10 +28,6 @@ namespace FamilyTreeProject.GEDCOM.Records
         public GEDCOMBaseRecord(GEDCOMRecord record) : base(record)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///   Gets the Automated Record ID
@@ -82,7 +76,5 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
             get { return ChildRecords.GetLinesByTag<GEDCOMExternalIDStructure>(GEDCOMTag.REFN); }
         }
-
-        #endregion
     }
 }

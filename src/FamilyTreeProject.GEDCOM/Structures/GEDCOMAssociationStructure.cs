@@ -16,11 +16,11 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Association</h2>
-    ///  n ASSO @<XREF:INDI>@                        {0:M} - Individual<br />
-    ///            +1 TYPE <RECORD_TYPE>                   {1:1} - RecordType<br />
-    ///                      +1 RELA <RELATION_IS_DESCRIPTOR>        {1:1} - Relation<br />
-    ///                                +1 <<SOURCE_CITATION>>                  {0:M} - <i>see GEDCOMStructure - SourceCitations<br />
-    ///                                                                                  +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
+    ///  n ASSO @<XREF:INDI>@                      {0:M} - Individual<br />
+    ///    +1 TYPE <RECORD_TYPE>                   {1:1} - RecordType<br />
+    ///    +1 RELA <RELATION_IS_DESCRIPTOR>        {1:1} - Relation<br />
+    ///    +1 <<SOURCE_CITATION>>                  {0:M} - <i>see GEDCOMStructure - SourceCitations<br />
+    ///    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMStructure - Notes</i><br />
     ///</remarks>
     public class GEDCOMAssociationStructure : GEDCOMStructure
     {

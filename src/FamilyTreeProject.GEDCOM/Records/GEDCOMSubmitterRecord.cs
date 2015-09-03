@@ -19,14 +19,14 @@ namespace FamilyTreeProject.GEDCOM.Records
     /// </summary>
     /// <remarks>
     ///   <h2>GEDCOM 5.5 Submitter Record</h2>
-    ///   n @XREF:SUBN@ SUBM                                {1:1} <br />
-    ///   +1 NAME <SUBMITTER_NAME>                       {1:1} - Name<br />
-    ///             +1 <<ADDRESS_STRUCTURE>>                       {0:1} - Address<br />
-    ///                   +1 <<MULTIMEDIA_LINK>>                         {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
-    ///                         +1 LANG <LANGUAGE_PREFERENCE>                  {0:3} - Languages<br />
-    ///                                   +1 RFN <SUBMITTER_REGISTERED_RFN>              {0:1} - RegisteredID<br />
-    ///                                            +1 RIN <AUTOMATED_RECORD_ID>                   {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
-    ///                                                     +1 <<CHANGE_DATE>>                             {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
+    ///   n @XREF:SUBN@ SUBM                               {1:1} <br />
+    ///     +1 NAME <SUBMITTER_NAME>                       {1:1} - Name<br />
+    ///     +1 <<ADDRESS_STRUCTURE>>                       {0:1} - Address<br />
+    ///     +1 <<MULTIMEDIA_LINK>>                         {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
+    ///     +1 LANG <LANGUAGE_PREFERENCE>                  {0:3} - Languages<br />
+    ///     +1 RFN <SUBMITTER_REGISTERED_RFN>              {0:1} - RegisteredID<br />
+    ///     +1 RIN <AUTOMATED_RECORD_ID>                   {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
+    ///     +1 <<CHANGE_DATE>>                             {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
     /// </remarks>
     public class GEDCOMSubmitterRecord : GEDCOMBaseRecord
     {

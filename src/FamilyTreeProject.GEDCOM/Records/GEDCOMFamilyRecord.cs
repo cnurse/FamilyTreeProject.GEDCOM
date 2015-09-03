@@ -19,30 +19,28 @@ namespace FamilyTreeProject.GEDCOM.Records
     ///</summary>
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Family Record</h2>
-    ///  n @{XREF:FAM}@   FAM						{1:1} <i>see GEDCOMRecord</i><br />
-    ///  +1 <FAMILY_EVENT_STRUCTURE>			{0:M} - Events<br />
-    ///       +2 HUSB							{0:1} - <br />
-    ///       +3 AGE <AGE_AT_EVENT>			{1:1} - <br />
-    ///                +2 WIFE							{0:1} - <br />
-    ///                +3 AGE <AGE_AT_EVENT>			{1:1} - <br />
-    ///                         +1 HUSB @{XREF:INDI}@					{0:1} - Husband<br />
-    ///                         +1 WIFE @{XREF:INDI}@					{0:1} - Wife<br />
-    ///                         +1 CHIL @{XREF:INDI}@					{0:M} - Children<br />
-    ///                         +1 NCHI {COUNT_OF_CHILDREN}			{0:1} - NoChildren<br />
-    ///                         +1 SUBM @{XREF:SUBM}@					{0:M} - Submitters<br />
-    ///                         +1 <<LDS_SPOUSE_SEALING>>				{0:M} - not implemented<br />
-    ///                               +1 <<SOURCE_CITATION>>					{0:M} - <i>see GEDCOMBaseRecord - SourceCitations</i><br />
-    ///                                     +1 <<MULTIMEDIA_LINK>>					{0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
-    ///                                           +1 <<NOTE_STRUCTURE>>					{0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
-    ///                                                 +1 REFN <USER_REFERENCE_NUMBER>		{0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
-    ///                                                           +2 TYPE <USER_REFERENCE_TYPE>		{0:1} - <br />
-    ///                                                                     +1 RIN <AUTOMATED_RECORD_ID>			{0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
-    ///                                                                              +1 <<CHANGE_DATE>>						{0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
+    ///  n @{XREF:FAM}@   FAM					{1:1} <i>see GEDCOMRecord</i><br />
+    ///    +1 <FAMILY_EVENT_STRUCTURE>			{0:M} - Facts<br />
+    ///      +2 HUSB							{0:1} - <br />
+    ///        +3 AGE <AGE_AT_EVENT>			{1:1} - <br />
+    ///      +2 WIFE							{0:1} - <br />
+    ///        +3 AGE <AGE_AT_EVENT>			{1:1} - <br />
+    ///   +1 HUSB @{XREF:INDI}@					{0:1} - Husband<br />
+    ///   +1 WIFE @{XREF:INDI}@					{0:1} - Wife<br />
+    ///   +1 CHIL @{XREF:INDI}@					{0:M} - Children<br />
+    ///   +1 NCHI {COUNT_OF_CHILDREN}			{0:1} - NoChildren<br />
+    ///   +1 SUBM @{XREF:SUBM}@					{0:M} - Submitters<br />
+    ///   +1 <<LDS_SPOUSE_SEALING>>				{0:M} - not implemented<br />
+    ///   +1 <<SOURCE_CITATION>>				{0:M} - <i>see GEDCOMBaseRecord - SourceCitations</i><br />
+    ///   +1 <<MULTIMEDIA_LINK>>				{0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
+    ///   +1 <<NOTE_STRUCTURE>>					{0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
+    ///   +1 REFN <USER_REFERENCE_NUMBER>		{0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
+    ///     +2 TYPE <USER_REFERENCE_TYPE>		{0:1} - <br />
+    ///   +1 RIN <AUTOMATED_RECORD_ID>			{0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
+    ///   +1 <<CHANGE_DATE>>					{0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
     ///</remarks>
     public class GEDCOMFamilyRecord : GEDCOMBaseRecord
     {
-        #region Constructors
-
         /// <summary>
         ///   Constructs a GEDCOMIndividualRecord
         /// </summary>
@@ -58,10 +56,6 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///   Gets the Children XRefIds for this Family
         /// </summary>
@@ -71,7 +65,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         }
 
         /// <summary>
-        ///   Gets the Events for this Family
+        ///   Gets the Facts for this Family
         /// </summary>
         public List<GEDCOMEventStructure> Events
         {
@@ -109,8 +103,6 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
             get { return ChildRecords.GetXRefID(GEDCOMTag.WIFE); }
         }
-
-        #endregion
 
         public void AddChild(string childId)
         {

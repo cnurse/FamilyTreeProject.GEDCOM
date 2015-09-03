@@ -20,24 +20,24 @@ namespace FamilyTreeProject.GEDCOM.Records
     ///<remarks>
     ///  <h2>GEDCOM 5.5 Source Record</h2>
     ///  n  @<XREF:SOUR>@ SOUR                     {1:1} <i>see GEDCOMRecord</i><br />
-    ///        +1 DATA                                 {0:1} <br />
-    ///        +2 EVEN <EVENTS_RECORDED>             {0:M} - SourceEvents<br />
-    ///                  +3 DATE <DATE_PERIOD>               {0:1} - <br />
-    ///                            +3 PLAC <SOURCE_JURISDICTION_PLACE> {0:1} - <br />
-    ///                                      +2 AGNC <RESPONSIBLE_AGENCY>          {0:1} - SourceAgency<br />
-    ///                                                +2 <<NOTE_STRUCTURE>>                 {0:M} - SourceNotes<br />
-    ///                                                      +1 AUTH <SOURCE_ORIGINATOR>             {0:1} - Author<br />
-    ///                                                                +1 TITL <SOURCE_DESCRIPTIVE_TITLE>      {0:1} - Title<br />
-    ///                                                                          +1 ABBR <SOURCE_FILED_BY_ENTRY>         {0:1} - AbbreviatedTitle<br />
-    ///                                                                                    +1 PUBL <SOURCE_PUBLICATION_FACTS>      {0:1} - PublisherInfo<br />
-    ///                                                                                              +1 TEXT <TEXT_FROM_SOURCE>              {0:1} - Text<br />
-    ///                                                                                                        +1 <<SOURCE_REPOSITORY_CITATION>>       {0:1} - SourceRepositories<br />
-    ///                                                                                                              +1 <<MULTIMEDIA_LINK>>                  {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
-    ///                                                                                                                    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
-    ///                                                                                                                          +1 REFN <USER_REFERENCE_NUMBER>         {0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
-    ///                                                                                                                                    +2 TYPE <USER_REFERENCE_TYPE>         {0:1} - <br />
-    ///                                                                                                                                              +1 RIN <AUTOMATED_RECORD_ID>            {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
-    ///                                                                                                                                                       +1 <<CHANGE_DATE>>                      {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
+    ///    +1 DATA                                 {0:1} <br />
+    ///      +2 EVEN <EVENTS_RECORDED>             {0:M} - SourceEvents<br />
+    ///        +3 DATE <DATE_PERIOD>               {0:1} - <br />
+    ///        +3 PLAC <SOURCE_JURISDICTION_PLACE> {0:1} - <br />
+    ///      +2 AGNC <RESPONSIBLE_AGENCY>          {0:1} - SourceAgency<br />
+    ///      +2 <<NOTE_STRUCTURE>>                 {0:M} - SourceNotes<br />
+    ///    +1 AUTH <SOURCE_ORIGINATOR>             {0:1} - Author<br />
+    ///    +1 TITL <SOURCE_DESCRIPTIVE_TITLE>      {0:1} - Title<br />
+    ///    +1 ABBR <SOURCE_FILED_BY_ENTRY>         {0:1} - AbbreviatedTitle<br />
+    ///    +1 PUBL <SOURCE_PUBLICATION_FACTS>      {0:1} - PublisherInfo<br />
+    ///    +1 TEXT <TEXT_FROM_SOURCE>              {0:1} - Text<br />
+    ///    +1 <<SOURCE_REPOSITORY_CITATION>>       {0:1} - SourceRepositories<br />
+    ///    +1 <<MULTIMEDIA_LINK>>                  {0:M} - <i>see GEDCOMBaseRecord - Multimedia</i><br />
+    ///    +1 <<NOTE_STRUCTURE>>                   {0:M} - <i>see GEDCOMBaseRecord - Notes</i><br />
+    ///    +1 REFN <USER_REFERENCE_NUMBER>         {0:M} - <i>see GEDCOMBaseRecord - UserDefinedIDs</i><br />
+    ///      +2 TYPE <USER_REFERENCE_TYPE>         {0:1} - <br />
+    ///    +1 RIN <AUTOMATED_RECORD_ID>            {0:1} - <i>see GEDCOMBaseRecord - AutomatedRecordID</i><br />
+    ///    +1 <<CHANGE_DATE>>                      {0:1} - <i>see GEDCOMBaseRecord - ChangeDate</i><br />
     ///</remarks>
     public class GEDCOMSourceRecord : GEDCOMBaseRecord
     {
@@ -137,11 +137,11 @@ namespace FamilyTreeProject.GEDCOM.Records
         }
 
         /// <summary>
-        ///   Gets a List of Source Repositories
+        ///   Gets the Source Repository
         /// </summary>
-        public List<GEDCOMSourceRepositoryCitationStructure> SourceRepositories
+        public GEDCOMSourceRepositoryCitationStructure SourceRepository
         {
-            get { return ChildRecords.GetLinesByTag<GEDCOMSourceRepositoryCitationStructure>(GEDCOMTag.REPO); }
+            get { return ChildRecords.GetLineByTag<GEDCOMSourceRepositoryCitationStructure>(GEDCOMTag.REPO); }
         }
 
         /// <summary>
