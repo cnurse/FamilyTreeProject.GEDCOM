@@ -267,10 +267,11 @@ namespace FamilyTreeProject.GEDCOM.Records
             string tagData = String.Empty;
             GEDCOMRecord record = GetLineByTag(tagName);
 
-            if (record != null)
+            if (record != null && tagData != null)
             {
                 tagData = record.Data;
             }
+
             return tagData;
         }
 
@@ -284,7 +285,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             string xRefId = String.Empty;
             GEDCOMRecord record = GetLineByTag(tagName);
 
-            if (record != null)
+            if (record != null && record.XRefId != null)
             {
                 xRefId = record.XRefId;
             }
