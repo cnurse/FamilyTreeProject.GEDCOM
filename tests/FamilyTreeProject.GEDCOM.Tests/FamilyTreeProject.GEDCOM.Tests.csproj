@@ -56,6 +56,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FamilyTreeProject.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FamilyTreeProject.Core.0.4.0\lib\FamilyTreeProject.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\FamilyTreeProject\src\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -172,10 +176,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\FamilyTreeProject.Core\src\FamilyTreeProject.Core\FamilyTreeProject.Core.csproj">
-      <Project>{ba58d9f1-31a6-4bde-9396-0aba7ee082d9}</Project>
-      <Name>FamilyTreeProject.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj">
       <Project>{7d940b59-fbb4-4a6e-a8ad-2f698205e1ef}</Project>
       <Name>FamilyTreeProject.GEDCOM</Name>
