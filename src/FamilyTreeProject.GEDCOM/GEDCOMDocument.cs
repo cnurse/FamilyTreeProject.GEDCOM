@@ -15,7 +15,6 @@ using System.Text;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.IO;
 using FamilyTreeProject.GEDCOM.Records;
-using Naif.Core.Contracts;
 // ReSharper disable ConvertPropertyToExpressionBody
 
 namespace FamilyTreeProject.GEDCOM
@@ -97,7 +96,10 @@ namespace FamilyTreeProject.GEDCOM
         /// <param name = "record">The record to add</param>
         public void AddRecord(GEDCOMRecord record)
         {
-            Requires.NotNull("record", record);
+            if (record == null)
+            {
+                throw new ArgumentNullException(typeof(GEDCOMRecord).Name);
+            }
 
             _records.Add(record);
 
@@ -111,7 +113,10 @@ namespace FamilyTreeProject.GEDCOM
         /// <param name = "records">The list of records to add</param>
         public void AddRecords(GEDCOMRecordList records)
         {
-            Requires.NotNull("records", records);
+            if (records == null)
+            {
+                throw new ArgumentNullException(typeof(GEDCOMRecordList).Name);
+            }
 
             _records.AddRange(records);
         }
@@ -171,7 +176,10 @@ namespace FamilyTreeProject.GEDCOM
         /// <param name = "record"></param>
         public void RemoveRecord(GEDCOMRecord record)
         {
-            Requires.NotNull("record", record);
+            if (record == null)
+            {
+                throw new ArgumentNullException(typeof(GEDCOMRecord).Name);
+            }
 
             if (_records.Remove(record))
             {
@@ -211,7 +219,10 @@ namespace FamilyTreeProject.GEDCOM
         /// <param name = "writer">The GEDCOMWriter to save to.</param>
         public void Save(GEDCOMWriter writer)
         {
-            Requires.NotNull("writer", writer);
+            if (writer == null)
+            {
+                throw new ArgumentNullException(typeof(GEDCOMWriter).Name);
+            }
 
             writer.NewLine = "\n";
 
@@ -256,7 +267,10 @@ namespace FamilyTreeProject.GEDCOM
 
         public GEDCOMFamilyRecord SelectChildsFamilyRecord(string childId)
         {
-            Requires.NotNullOrEmpty("childId", childId);
+            if (childId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
 
             return (from GEDCOMFamilyRecord familyRecord in FamilyRecords
                     where familyRecord.Children.Contains(childId)
@@ -280,8 +294,14 @@ namespace FamilyTreeProject.GEDCOM
 
         public GEDCOMFamilyRecord SelectFamilyRecord(string husbandId, string wifeId)
         {
-            Requires.NotNull("husbandId", husbandId);
-            Requires.NotNull("wifeId", wifeId);
+            if (husbandId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
+            if (wifeId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
 
             return (from GEDCOMFamilyRecord familyRecord in FamilyRecords
                     where familyRecord.Husband == husbandId && familyRecord.Wife == wifeId
@@ -291,7 +311,10 @@ namespace FamilyTreeProject.GEDCOM
 
         public IEnumerable<GEDCOMFamilyRecord> SelectFamilyRecords(string individualId)
         {
-            Requires.NotNullOrEmpty("individualId", individualId);
+            if (individualId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
 
             return from GEDCOMFamilyRecord familyRecord in FamilyRecords
                    where (familyRecord.Husband == individualId) || (familyRecord.Wife == individualId)
@@ -305,7 +328,10 @@ namespace FamilyTreeProject.GEDCOM
 
         public IEnumerable<GEDCOMFamilyRecord> SelectHusbandsFamilyRecords(string husbandId)
         {
-            Requires.NotNullOrEmpty("husbandId", husbandId);
+            if (husbandId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
 
             return from GEDCOMFamilyRecord familyRecord in FamilyRecords
                    where familyRecord.Husband == husbandId
@@ -372,7 +398,10 @@ namespace FamilyTreeProject.GEDCOM
 
         public IEnumerable<GEDCOMFamilyRecord> SelectWifesFamilyRecords(string wifeId)
         {
-            Requires.NotNullOrEmpty("wifeId", wifeId);
+            if (wifeId == null)
+            {
+                throw new ArgumentNullException(typeof(string).Name);
+            }
 
             return from GEDCOMFamilyRecord familyRecord in FamilyRecords
                    where familyRecord.Wife == wifeId
