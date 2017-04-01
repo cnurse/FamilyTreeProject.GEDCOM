@@ -12,7 +12,6 @@ using System.Text;
 
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
-using Naif.Core.Contracts;
 // ReSharper disable UseNullPropagation
 
 namespace FamilyTreeProject.GEDCOM.IO
@@ -81,7 +80,10 @@ namespace FamilyTreeProject.GEDCOM.IO
         /// <param name = "writer">The TextWriter to use</param>
         public static GEDCOMWriter Create(TextWriter writer)
         {
-            Requires.NotNull("writer", writer);
+            if (writer == null)
+            {
+                throw new ArgumentNullException(typeof(TextWriter).Name);
+            }
 
             return new GEDCOMWriter(writer);
         }
@@ -92,7 +94,10 @@ namespace FamilyTreeProject.GEDCOM.IO
         /// <param name = "stream">The Stream to use</param>
         public static GEDCOMWriter Create(Stream stream)
         {
-            Requires.NotNull("stream", stream);
+            if (stream == null)
+            {
+                throw new ArgumentNullException(typeof(Stream).Name);
+            }
 
             return new GEDCOMWriter(stream);
         }
@@ -103,7 +108,10 @@ namespace FamilyTreeProject.GEDCOM.IO
         /// <param name = "stringBuilder">The StringBuilder to use</param>
         public static GEDCOMWriter Create(StringBuilder stringBuilder)
         {
-            Requires.NotNull("stringBuilder", stringBuilder);
+            if (stringBuilder == null)
+            {
+                throw new ArgumentNullException(typeof(StringBuilder).Name);
+            }
 
             return new GEDCOMWriter(stringBuilder);
         }
