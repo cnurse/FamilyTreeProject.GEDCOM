@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FamilyTreeProject.GEDCOM</id>
+    <title>FamilyTreeProject.GEDCOM</title>
+    <version>1.0.0</version>
+    <authors>Family Tree DNA</authors>
+    <owners>Family Tree DNA</owners>
+    <licenseUrl>http://www.familytreedna.com</licenseUrl>
+    <projectUrl>http://www.familytreedna.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FamilyTreeProject.GEDCOM</description>
+  </metadata>
+</package>
