@@ -243,6 +243,15 @@ namespace FamilyTreeProject.GEDCOM
             //Write families
             writer.WriteRecords(FamilyRecords, true);
 
+            //Write sources
+            writer.WriteRecords(SourceRecords, true);
+
+            //Write repos
+            writer.WriteRecords(RepositoryRecords, true);
+
+            //Write notes
+            writer.WriteRecords(NoteRecords, true);
+
             //Write Trailer
             writer.WriteRecord(SelectTrailer());
 

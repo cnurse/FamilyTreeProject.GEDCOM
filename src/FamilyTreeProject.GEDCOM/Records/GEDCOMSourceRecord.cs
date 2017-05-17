@@ -44,6 +44,17 @@ namespace FamilyTreeProject.GEDCOM.Records
         #region Constructors
 
         /// <summary>
+        ///   Constructs a GEDCOMSourceRecord
+        /// </summary>
+        public GEDCOMSourceRecord(int level, long id, string title = null) : base(new GEDCOMRecord(level, "@SR" + id + "@", "", "SOUR", ""))
+        {            
+            if (title != null)
+            {
+                AddChildRecord(string.Empty, string.Empty, "TITL", title);                
+            }            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMSourceRecord from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

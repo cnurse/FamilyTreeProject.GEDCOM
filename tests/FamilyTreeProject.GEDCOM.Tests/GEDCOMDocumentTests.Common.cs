@@ -447,12 +447,13 @@ namespace FamilyTreeProject.GEDCOM.Tests
         #region SaveGEDCOM
 
         [Test]
-        [TestCase("NoRecordsSave", 0, 0)]
-        [TestCase("OneIndividualSave", 1, 0)]
-        [TestCase("TwoIndividualsSave", 2, 0)]
+        [TestCase("NoRecordsSave")]
+        [TestCase("OneIndividualSave", 1)]
+        [TestCase("TwoIndividualsSave", 2)]
         [TestCase("OneFamilySave", 2, 1)]
         [TestCase("TwoFamiliesSave", 3, 2)]
-        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount, int familyCount)
+        [TestCase("OneNote", 0, 0, 1)]
+        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount = 0, int familyCount = 0, int noteCount = 0)
         {
             //Arrange
             var document = new GEDCOMDocument();
@@ -464,8 +465,14 @@ namespace FamilyTreeProject.GEDCOM.Tests
             for (int i = 1; i <= familyCount; i++)
             {
                 document.AddRecord(Util.CreateFamilyRecord(i));
+            }            
+            for (int i = 1; i <= noteCount; i++)
+            {
+                document.AddRecord(Util.CreateSourceRecord(i, i));
+                document.AddRecord(Util.CreateRepoRecord(i));
+                document.AddRecord(Util.CreateNoteRecord(i, i));                
             }
-
+            
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }

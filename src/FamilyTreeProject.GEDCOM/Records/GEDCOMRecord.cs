@@ -50,7 +50,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <param name = "xRefId">An optional XrefId reference</param>
         /// <param name = "tag">The tag name of the GEDCOM Record</param>
         /// <param name = "data">The data part of the GEDCOM Record</param>
-        internal GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
+        public GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
         {
             Level = level;
             Id = id;
@@ -159,7 +159,14 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         protected void AddChildRecord(string childId, string childXRefId, string childTag, string childData)
         {
-            ChildRecords.Add(new GEDCOMRecord(Level + 1, childId, childXRefId, childTag, childData));
+            AddChildRecord(childId, childXRefId, childTag, childData, null);
+        }
+
+        protected void AddChildRecord(string childId, string childXRefId, string childTag, string childData, int? level)
+        {
+            level = level ?? Level + 1;
+
+            ChildRecords.Add(new GEDCOMRecord((int)level, childId, childXRefId, childTag, childData));
         }
 
         protected string GetChildData(GEDCOMTag childTag)

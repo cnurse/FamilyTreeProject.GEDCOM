@@ -6,6 +6,7 @@
 //                                         *
 // *****************************************
 
+using System;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 
@@ -31,6 +32,10 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>
         public GEDCOMAssociationStructure(GEDCOMRecord record) : base(record)
+        {
+        }
+
+        public GEDCOMAssociationStructure(int level, string id, string tag) : this(new GEDCOMRecord(level, string.Empty, $"@{id}@", tag, string.Empty))
         {
         }
 
