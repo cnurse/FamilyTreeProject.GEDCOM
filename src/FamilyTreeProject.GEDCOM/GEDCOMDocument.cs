@@ -37,9 +37,25 @@ namespace FamilyTreeProject.GEDCOM
         private GEDCOMRecordList _submitterRecords;
         private GEDCOMRecord _trailerRecord;
 
+        private int _maxNoteLength = 248;
+
         #endregion
 
         #region Public Properties
+
+        public int MaxNoteLength
+        {
+            get => _maxNoteLength;
+            set
+            {
+                if (value < 1 || value > 248)
+                {
+                    throw new ArgumentOutOfRangeException("Note length is out of range.");
+                }
+
+                _maxNoteLength = value;
+            }
+        }
 
         public GEDCOMRecordList FamilyRecords
         {
@@ -224,7 +240,7 @@ namespace FamilyTreeProject.GEDCOM
                 throw new ArgumentNullException(typeof(GEDCOMWriter).Name);
             }
 
-            writer.NewLine = "\n";
+            writer.NewLine = "\n";            
 
             if (SelectTrailer() == null)
             {
@@ -268,6 +284,7 @@ namespace FamilyTreeProject.GEDCOM
 
             using (var writer = GEDCOMWriter.Create(sb))
             {
+                writer.MaxNoteLength = MaxNoteLength;
                 Save(writer);
             }
 

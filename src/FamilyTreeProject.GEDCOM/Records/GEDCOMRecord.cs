@@ -7,9 +7,12 @@
 // *****************************************
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using FamilyTreeProject.GEDCOM.Common;
+using FamilyTreeProject.GEDCOM.Extensions;
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
@@ -273,7 +276,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <summary>
         ///   Splits the Data field into Child CONT records
         /// </summary>
-        public void SplitData()
+        public void SplitDataWithNewline()
         {
             string[] data = Data.Split(new[] {'\n'});
 
@@ -286,6 +289,28 @@ namespace FamilyTreeProject.GEDCOM.Records
                 for (int i = 1; i < data.Length; i++)
                 {
                     ChildRecords.Insert(i - 1, new GEDCOMRecord(Level + 1, "", "", "CONT", data[i]));
+                }
+            }
+        }
+
+        /// <summary>
+        ///   Splits the Data field into Child CONT records
+        /// </summary>
+        public void SplitLongNoteData(int length)
+        {
+            if (Tag != "NOTE") { return; }
+
+            List<string> data = Data.Split(length).ToList();
+
+            if (data.Count() > 1)
+            {
+                //The original Data field holds the first part
+                Data = data[0];
+
+                //Add CONT records for eacdh other part
+                for (int i = 1; i < data.Count; i++)
+                {
+                    ChildRecords.Insert(i - 1, new GEDCOMRecord(Level + 1, "", "", "CONC", data[i]));
                 }
             }
         }

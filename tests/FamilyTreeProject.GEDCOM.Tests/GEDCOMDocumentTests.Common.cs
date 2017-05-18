@@ -453,6 +453,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [TestCase("OneFamilySave", 2, 1)]
         [TestCase("TwoFamiliesSave", 3, 2)]
         [TestCase("OneNote", 0, 0, 1)]
+        [TestCase("InlineNote", 0, 0, 1)]
         public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount = 0, int familyCount = 0, int noteCount = 0)
         {
             //Arrange
@@ -468,11 +469,21 @@ namespace FamilyTreeProject.GEDCOM.Tests
             }            
             for (int i = 1; i <= noteCount; i++)
             {
-                document.AddRecord(Util.CreateSourceRecord(i, i));
-                document.AddRecord(Util.CreateRepoRecord(i));
-                document.AddRecord(Util.CreateNoteRecord(i, i));                
+                switch (fileName)
+                {
+                    case "OneNote":
+                        document.AddRecord(Util.CreateSourceRecord(i, i));
+                        document.AddRecord(Util.CreateRepoRecord(i));
+                        document.AddRecord(Util.CreateNoteRecord(i, i));
+                        break;
+                    case "InlineNote":                        
+                        document.AddRecord(Util.CreateNoteRecord(2, null, 1));
+                        break;
+                }
+                
             }
-            
+
+            document.MaxNoteLength = 70;
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }
