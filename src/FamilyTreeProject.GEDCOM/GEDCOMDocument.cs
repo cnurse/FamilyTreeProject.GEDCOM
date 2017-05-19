@@ -45,7 +45,7 @@ namespace FamilyTreeProject.GEDCOM
 
         public int MaxNoteLength
         {
-            get => _maxNoteLength;
+            get { return _maxNoteLength; }
             set
             {
                 if (value < 1 || value > 248)
