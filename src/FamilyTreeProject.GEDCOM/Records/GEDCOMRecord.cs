@@ -278,6 +278,8 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// </summary>
         public void SplitDataWithNewline()
         {
+            if (string.IsNullOrEmpty(Data)) { return; }
+
             string[] data = Data.Split(new[] {'\n'});
 
             if (data.Length > 1)
@@ -299,6 +301,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         public void SplitLongNoteData(int length)
         {
             if (Tag != "NOTE") { return; }
+            if (string.IsNullOrEmpty(Data)) { return; }
 
             List<string> data = Data.Split(length).ToList();
 
