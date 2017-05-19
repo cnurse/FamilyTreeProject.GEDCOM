@@ -1,0 +1,22 @@
+﻿0 HEAD
+1 SOUR FTM
+2 CORP The Generations Network
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+2 NAME Family Tree Maker for Windows
+2 VERS Family Tree Maker (17.0.0.416)
+1 DEST FTM
+1 DATE 13 December 2008
+1 CHAR ANSI
+1 FILE D:\My Projects\Family Tree Project\Tests\FamilyTreeProject.GEDCOM.Tests\TestFiles\InlineNote.ged
+1 SUBM @SUBM@
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 NOTE == '''Augustin Ernest (Agustín Ernesto) Lemonnier:''' ==   Nació en Fr
+2 CONC ancia entre los años 1862, 1863 y 1864,  probablemente en alguna ciuda
+2 CONC d de la región de Normandía, de donde es originario el apellido Lemonn
+2 CONC ier y donde han habitado y habitan la gran mayoría de personas con est
+2 CONC e apellido.  Llegó al puerto de Chala (Caravelí, Arequipa, Perú) aprox
+2 CONC imadamente en 1883, según dice su acta de matrimonio.
+0 TRLR

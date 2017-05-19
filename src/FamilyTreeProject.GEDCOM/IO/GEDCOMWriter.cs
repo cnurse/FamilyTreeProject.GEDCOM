@@ -18,8 +18,32 @@ namespace FamilyTreeProject.GEDCOM.IO
 {
     public class GEDCOMWriter : IDisposable
     {
+        #region Fields
+
         private bool _disposed;
         private TextWriter _writer;
+        
+        private int _maxNoteLength = 248;
+
+        #endregion
+
+        #region Public Properties
+
+        public int MaxNoteLength
+        {
+            get => _maxNoteLength;
+            set
+            {
+                if (value < 1 || value > 248)
+                {
+                    throw new ArgumentOutOfRangeException("Note length is out of range.");
+                }
+
+                _maxNoteLength = value;
+            }
+        }
+
+        #endregion
 
         #region Constructors
 
@@ -182,7 +206,8 @@ namespace FamilyTreeProject.GEDCOM.IO
         public void WriteRecord(GEDCOMRecord record, bool includeChildRecords)
         {
             //Split the data into CONT
-            record.SplitData();
+            record.SplitDataWithNewline();
+            record.SplitLongNoteData(MaxNoteLength);
 
             WriteRecord(record.Id, record.Level, record.XRefId, record.Tag, record.Data);
 

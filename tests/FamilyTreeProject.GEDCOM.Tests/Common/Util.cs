@@ -9,6 +9,7 @@
 using System;
 
 using FamilyTreeProject.Common;
+using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
 
@@ -20,6 +21,14 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
         public const string IND_LastName = "Bar";
         public const string IND_AltLastName = "Car";
 
+        public const string NOTE_text = "New Notes {0}";
+
+        public const string NOTE_long_header_text =
+            "== '''Augustin Ernest (Agustín Ernesto) Lemonnier:''' ==   Nació en Francia entre los años 1862, 1863 y 1864,  probablemente en alguna ciudad " +
+            "de la región de Normandía, de donde es originario el apellido Lemonnier y donde han habitado y habitan la gran mayoría de personas con este apellido.  Llegó al puerto de " +
+            "Chala (Caravelí, Arequipa, Perú) aproximadamente en 1883, según dice su acta de matrimonio.";        
+
+        public static readonly DateTime NOTE_DATETIME = new DateTime(2017, 4, 19, 16, 45, 35);
 
         public static GEDCOMFamilyRecord CreateFamilyRecord(int recordNo)
         {
@@ -118,6 +127,15 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
                     birthEvent = new GEDCOMEventStructure(individual.Level + 1, "BIRT", "31 Mar 1964", "MyTown");
                     individual.ChildRecords.Add(birthEvent);
                     break;
+                case 4:
+                    name = new GEDCOMNameStructure("Augustin Ernest /Lemonnier/", individual.Level + 1);
+                    individual.Name = name;
+                    individual.Sex = Sex.Male;
+                    birthEvent = new GEDCOMEventStructure(individual.Level + 1, "BIRT", "1863", "Francia");
+                    deathEvent = new GEDCOMEventStructure(individual.Level + 1, "DEAT", "BET 1900 AND 1904", "Chile o Perú");
+                    individual.ChildRecords.Add(birthEvent);
+                    individual.ChildRecords.Add(deathEvent);
+                    break;                    
                 default:
                     string firstName = String.Format(IND_FirstName, recordNo);
                     string lastName = (recordNo < 5) ? IND_LastName : IND_AltLastName;
@@ -128,7 +146,7 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
 
             return individual;
         }
-
+        
         public static GEDCOMRecordList CreateIndividualRecords()
         {
             var individuals = new GEDCOMRecordList();
@@ -141,5 +159,65 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
 
             return individuals;
         }
+
+        public static GEDCOMSourceRecord CreateSourceRecord(int recordNo, int? repoId = null, int level = 0)
+        {            
+            var source = new GEDCOMSourceRecord(level, recordNo, "New Source");
+            source.ChildRecords.Add(GEDCOMExternalIDStructure.CreateUserReference(NOTE_DATETIME.ToString("dd MMM yyyy HH:mm:ss").ToUpper(), "Creation Date", level + 1));
+            source.ChildRecords.Add(new GEDCOMStructure(level + 1, string.Empty, string.Empty, "_GCID", "AD13971A-678C-438B-996D-786258F0A96F"));
+
+            if (repoId != null)
+            {
+                source.ChildRecords.Add(new GEDCOMAssociationStructure(level + 1, $"R{repoId}", "REPO"));
+            }
+
+            source.ChildRecords.Add(new GEDCOMChangeDateStructure(level + 1, NOTE_DATETIME));
+
+            return source;
+        }
+
+        public static GEDCOMNoteRecord CreateNoteRecord(int recordNo, int? sourceId = null, int level = 0)
+        {
+            GEDCOMNoteRecord note;
+
+            switch (recordNo)
+            {
+                case 1:
+                    note = new GEDCOMNoteRecord(recordNo)
+                    {
+                        Level = level
+                    };
+
+                    note.ChildRecords.Add(new GEDCOMNoteStructure(level + 1, "CONC", string.Format(NOTE_text, recordNo)));
+                    note.ChildRecords.Add(GEDCOMExternalIDStructure.CreateUserReference(NOTE_DATETIME.ToString("dd MMM yyyy HH:mm:ss").ToUpper(), "Creation Date", level + 1));
+                    note.ChildRecords.Add(new GEDCOMStructure(level + 1, string.Empty, string.Empty, "_GCID", "05DB1416-C53E-429E-98FE-725E12DDED2D"));
+                    note.ChildRecords.Add(new GEDCOMChangeDateStructure(level + 1, NOTE_DATETIME));
+
+                    if (sourceId != null)
+                    {
+                        note.ChildRecords.Add(new GEDCOMAssociationStructure(level + 1, $"SR{sourceId}", "SOUR"));
+                    }
+                    break;
+                case 2:
+                    note = new GEDCOMNoteRecord(new GEDCOMRecord(level, null, null, "NOTE", NOTE_long_header_text));                    
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();                    
+            }
+            
+
+            return note;
+        }
+
+        public static GEDCOMRepositoryRecord CreateRepoRecord(int recordNo, int level = 0)
+        {
+            var repo = new GEDCOMRepositoryRecord(level, recordNo, "New Repository", "123 Nowhere St");
+            repo.ChildRecords.Add(GEDCOMExternalIDStructure.CreateUserReference(NOTE_DATETIME.ToString("dd MMM yyyy HH:mm:ss").ToUpper(), "Creation Date", level + 1));
+            repo.ChildRecords.Add(new GEDCOMStructure(level + 1, string.Empty, string.Empty, "_GCID", "EFF36040-4598-4A8E-BFF0-10D4159B2458"));
+            repo.ChildRecords.Add(new GEDCOMChangeDateStructure(level + 1, NOTE_DATETIME));
+
+            return repo;
+        }
     }
 }
+ 
