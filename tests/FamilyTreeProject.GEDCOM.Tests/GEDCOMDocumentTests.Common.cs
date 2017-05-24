@@ -483,7 +483,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 
             }
 
-            document.MaxNoteLength = 70;
+            // document.MaxNoteLength = 70;
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }

@@ -298,8 +298,6 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// </summary>
         public void SplitLongNoteData(int length)
         {
-            if (Tag != "NOTE") { return; }
-
             List<string> data = Data.Split(length).ToList();
 
             if (data.Count() > 1)
