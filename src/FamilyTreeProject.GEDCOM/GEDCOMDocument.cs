@@ -37,23 +37,23 @@ namespace FamilyTreeProject.GEDCOM
         private GEDCOMRecordList _submitterRecords;
         private GEDCOMRecord _trailerRecord;
 
-        private int _maxNoteLength = 248;
+        private int _maxLineLength = 248;
 
         #endregion
 
         #region Public Properties
 
-        public int MaxNoteLength
+        public int MaxLineLength
         {
-            get { return _maxNoteLength; }
+            get { return _maxLineLength; }
             set
             {
                 if (value < 1 || value > 248)
                 {
-                    throw new ArgumentOutOfRangeException("Note length is out of range.");
+                    throw new ArgumentOutOfRangeException("Length is out of range.");
                 }
 
-                _maxNoteLength = value;
+                _maxLineLength = value;
             }
         }
 

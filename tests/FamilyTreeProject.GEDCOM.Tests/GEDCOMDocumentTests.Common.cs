@@ -485,6 +485,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 }
                 
             }
+
             for (int i = 1; i < userDefinedCount; i++)
             {
                 switch (i)
@@ -502,7 +503,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
                         break;
                 }
             }
-           
+
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }

@@ -285,6 +285,8 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// </summary>
         public void SplitDataWithNewline()
         {
+            if (string.IsNullOrEmpty(Data)) { return; }
+
             string[] data = Data.Split(new[] {'\n'});
 
             if (data.Length > 1)
