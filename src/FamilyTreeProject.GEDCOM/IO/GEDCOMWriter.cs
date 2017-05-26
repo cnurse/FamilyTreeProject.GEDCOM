@@ -21,27 +21,7 @@ namespace FamilyTreeProject.GEDCOM.IO
         #region Fields
 
         private bool _disposed;
-        private TextWriter _writer;
-        
-        private int _maxNoteLength = 248;
-
-        #endregion
-
-        #region Public Properties
-
-        public int MaxNoteLength
-        {
-            get { return _maxNoteLength; }
-            set
-            {
-                if (value < 1 || value > 248)
-                {
-                    throw new ArgumentOutOfRangeException("Note length is out of range.");
-                }
-
-                _maxNoteLength = value;
-            }
-        }
+        private TextWriter _writer;       
 
         #endregion
 
@@ -207,7 +187,7 @@ namespace FamilyTreeProject.GEDCOM.IO
         {
             //Split the data into CONT
             record.SplitDataWithNewline();
-            record.SplitLongNoteData(MaxNoteLength);
+            record.SplitLongNoteData();
 
             WriteRecord(record.Id, record.Level, record.XRefId, record.Tag, record.Data);
 

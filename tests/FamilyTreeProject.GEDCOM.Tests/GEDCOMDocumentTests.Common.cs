@@ -454,11 +454,14 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [TestCase("TwoFamiliesSave", 3, 2)]
         [TestCase("OneNote", 0, 0, 1)]
         [TestCase("InlineNote", 0, 0, 1)]
-        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount = 0, int familyCount = 0, int noteCount = 0)
+        [TestCase("UserDefinedTags", 1, 0, 0, 4)]
+        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount = 0, int familyCount = 0, int noteCount = 0, int userDefinedCount = 0)
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.AddRecord(Util.CreateHeaderRecord(fileName));
+            GEDCOMHeaderRecord headerRecord = Util.CreateHeaderRecord(fileName);
+            document.AddRecord(headerRecord);
+
             for (int i = 1; i <= individualCount; i++)
             {
                 document.AddRecord(Util.CreateIndividualRecord(i));
@@ -482,8 +485,24 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 }
                 
             }
-
-            document.MaxNoteLength = 70;
+            for (int i = 1; i < userDefinedCount; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                    case 2:
+                        headerRecord.ChildRecords.Add(Util.CreateUserDefinedStructure(i));
+                        break;                    
+                    case 3:
+                    case 4:
+                        if (document.IndividualRecords.Count > 0) // Sanity check
+                        {
+                            document.IndividualRecords[0].ChildRecords.Add(Util.CreateUserDefinedStructure(i));
+                        }
+                        break;
+                }
+            }
+           
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }

@@ -283,8 +283,7 @@ namespace FamilyTreeProject.GEDCOM
             var sb = new StringBuilder();
 
             using (var writer = GEDCOMWriter.Create(sb))
-            {
-                writer.MaxNoteLength = MaxNoteLength;
+            {                
                 Save(writer);
             }
 
