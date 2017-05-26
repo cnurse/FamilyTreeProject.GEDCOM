@@ -37,9 +37,25 @@ namespace FamilyTreeProject.GEDCOM
         private GEDCOMRecordList _submitterRecords;
         private GEDCOMRecord _trailerRecord;
 
+        private int _maxLineLength = 248;
+
         #endregion
 
         #region Public Properties
+
+        public int MaxLineLength
+        {
+            get { return _maxLineLength; }
+            set
+            {
+                if (value < 1 || value > 248)
+                {
+                    throw new ArgumentOutOfRangeException("Length is out of range.");
+                }
+
+                _maxLineLength = value;
+            }
+        }
 
         public GEDCOMRecordList FamilyRecords
         {
@@ -224,7 +240,7 @@ namespace FamilyTreeProject.GEDCOM
                 throw new ArgumentNullException(typeof(GEDCOMWriter).Name);
             }
 
-            writer.NewLine = "\n";
+            writer.NewLine = "\n";            
 
             if (SelectTrailer() == null)
             {
@@ -243,6 +259,15 @@ namespace FamilyTreeProject.GEDCOM
             //Write families
             writer.WriteRecords(FamilyRecords, true);
 
+            //Write sources
+            writer.WriteRecords(SourceRecords, true);
+
+            //Write repos
+            writer.WriteRecords(RepositoryRecords, true);
+
+            //Write notes
+            writer.WriteRecords(NoteRecords, true);
+
             //Write Trailer
             writer.WriteRecord(SelectTrailer());
 
@@ -258,7 +283,7 @@ namespace FamilyTreeProject.GEDCOM
             var sb = new StringBuilder();
 
             using (var writer = GEDCOMWriter.Create(sb))
-            {
+            {                
                 Save(writer);
             }
 

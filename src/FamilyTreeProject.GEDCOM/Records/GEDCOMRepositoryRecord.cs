@@ -35,6 +35,23 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
         }
 
+        public GEDCOMRepositoryRecord(long id) : this(new GEDCOMRecord(0, "@R" + id + "@", "", "REPO", ""))
+        {
+
+        }
+
+        public GEDCOMRepositoryRecord(int level, int id, string name, string address) : this(new GEDCOMRecord(level, "@R" + id + "@", "", "REPO", ""))
+        {
+            if (name != null)
+            {
+                AddChildRecord(string.Empty, string.Empty, "NAME", name);
+            }               
+            if (address != null)
+            {                
+                ChildRecords.Add(new GEDCOMAddressStructure(level + 1, address));
+            }
+        }
+
         /// <summary>
         ///   Gets the Address of the Repository
         /// </summary>

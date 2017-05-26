@@ -18,8 +18,12 @@ namespace FamilyTreeProject.GEDCOM.IO
 {
     public class GEDCOMWriter : IDisposable
     {
+        #region Fields
+
         private bool _disposed;
-        private TextWriter _writer;
+        private TextWriter _writer;       
+
+        #endregion
 
         #region Constructors
 
@@ -182,7 +186,8 @@ namespace FamilyTreeProject.GEDCOM.IO
         public void WriteRecord(GEDCOMRecord record, bool includeChildRecords)
         {
             //Split the data into CONT
-            record.SplitData();
+            record.SplitDataWithNewline();
+            record.SplitLongNoteData();
 
             WriteRecord(record.Id, record.Level, record.XRefId, record.Tag, record.Data);
 
