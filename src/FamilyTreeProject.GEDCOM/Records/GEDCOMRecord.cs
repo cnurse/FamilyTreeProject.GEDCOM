@@ -18,11 +18,18 @@ namespace FamilyTreeProject.GEDCOM.Records
 {
     public class GEDCOMRecord : IEquatable<GEDCOMRecord>
     {
+        #region Constants
+
+        private const int MAX_STRING_LENGTH = 255;
+        private const int SPACE_LENGTH = 1;
+
+        #endregion
+
         #region Fields
 
         private readonly GEDCOMRecordList _childRecords;
         private string _data;
-        private string _xRefId;
+        private string _xRefId;        
 
         #endregion
 
@@ -298,12 +305,11 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <summary>
         ///   Splits the Data field into Child CONT records
         /// </summary>
-        public void SplitLongNoteData(int length)
-        {
-            if (Tag != "NOTE") { return; }
-            if (string.IsNullOrEmpty(Data)) { return; }
-
-            List<string> data = Data.Split(length).ToList();
+        public void SplitLongNoteData()
+        {            
+            // 255 - Level(1) - Space(1) - Tag - Space(1)            
+            int lineLength = MAX_STRING_LENGTH - Level.ToString().Length - SPACE_LENGTH - Tag.Length - SPACE_LENGTH;
+            List<string> data = Data.Split(lineLength).ToList();
 
             if (data.Count() > 1)
             {

@@ -76,6 +76,7 @@
     <Compile Include="Structures\GEDCOMSourceEventStructure.cs" />
     <Compile Include="Structures\GEDCOMSourceRepositoryCitationStructure.cs" />
     <Compile Include="Structures\GEDCOMStructure.cs" />
+    <Compile Include="Structures\GEDCOMUserDefinedStructure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

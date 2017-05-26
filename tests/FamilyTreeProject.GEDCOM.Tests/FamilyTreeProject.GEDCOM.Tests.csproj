@@ -176,6 +176,7 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneNote.ged" />
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\InlineNote.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\UserDefinedTags.ged" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj">
