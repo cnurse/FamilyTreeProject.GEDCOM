@@ -447,16 +447,21 @@ namespace FamilyTreeProject.GEDCOM.Tests
         #region SaveGEDCOM
 
         [Test]
-        [TestCase("NoRecordsSave", 0, 0)]
-        [TestCase("OneIndividualSave", 1, 0)]
-        [TestCase("TwoIndividualsSave", 2, 0)]
+        [TestCase("NoRecordsSave")]
+        [TestCase("OneIndividualSave", 1)]
+        [TestCase("TwoIndividualsSave", 2)]
         [TestCase("OneFamilySave", 2, 1)]
         [TestCase("TwoFamiliesSave", 3, 2)]
-        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount, int familyCount)
+        [TestCase("OneNote", 0, 0, 1)]
+        [TestCase("InlineNote", 0, 0, 1)]
+        [TestCase("UserDefinedTags", 1, 0, 0, 4)]
+        public void GEDCOMDocument_SaveGEDCOM_Saves_Document(string fileName, int individualCount = 0, int familyCount = 0, int noteCount = 0, int userDefinedCount = 0)
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.AddRecord(Util.CreateHeaderRecord(fileName));
+            GEDCOMHeaderRecord headerRecord = Util.CreateHeaderRecord(fileName);
+            document.AddRecord(headerRecord);
+
             for (int i = 1; i <= individualCount; i++)
             {
                 document.AddRecord(Util.CreateIndividualRecord(i));
@@ -464,6 +469,39 @@ namespace FamilyTreeProject.GEDCOM.Tests
             for (int i = 1; i <= familyCount; i++)
             {
                 document.AddRecord(Util.CreateFamilyRecord(i));
+            }            
+            for (int i = 1; i <= noteCount; i++)
+            {
+                switch (fileName)
+                {
+                    case "OneNote":
+                        document.AddRecord(Util.CreateSourceRecord(i, i));
+                        document.AddRecord(Util.CreateRepoRecord(i));
+                        document.AddRecord(Util.CreateNoteRecord(i, i));
+                        break;
+                    case "InlineNote":                        
+                        document.AddRecord(Util.CreateNoteRecord(2, null, 1));
+                        break;
+                }
+                
+            }
+
+            for (int i = 1; i < userDefinedCount; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                    case 2:
+                        headerRecord.ChildRecords.Add(Util.CreateUserDefinedStructure(i));
+                        break;                    
+                    case 3:
+                    case 4:
+                        if (document.IndividualRecords.Count > 0) // Sanity check
+                        {
+                            document.IndividualRecords[0].ChildRecords.Add(Util.CreateUserDefinedStructure(i));
+                        }
+                        break;
+                }
             }
 
             //Assert

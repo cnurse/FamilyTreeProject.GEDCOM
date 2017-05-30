@@ -6,6 +6,7 @@
 //                                         *
 // *****************************************
 
+using System.IO.Compression;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 
@@ -28,6 +29,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         }
 
         #endregion
+        public static GEDCOMExternalIDStructure CreateUserReference(string number, string type, int level = 0)
+        {
+            var userReference = new GEDCOMExternalIDStructure(new GEDCOMRecord(level, "", "", "REFN", number));
+            userReference.AddChildRecord(string.Empty, string.Empty, "TYPE", type, level + 1);
+
+            return userReference;
+        }
 
         #region Public Properties
 

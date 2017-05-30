@@ -64,7 +64,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             Stream s = new MemoryStream();
             GEDCOMWriter writer = GEDCOMWriter.Create(s);
 
-            Assert.IsInstanceOfType(typeof (GEDCOMWriter), writer);
+            Assert.IsInstanceOf(typeof (GEDCOMWriter), writer);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             StringWriter stringWriter = new StringWriter(new StringBuilder());
             GEDCOMWriter writer = GEDCOMWriter.Create(stringWriter);
 
-            Assert.IsInstanceOfType(typeof (GEDCOMWriter), writer);
+            Assert.IsInstanceOf(typeof (GEDCOMWriter), writer);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             StringBuilder sb = new StringBuilder();
             GEDCOMWriter writer = GEDCOMWriter.Create(sb);
 
-            Assert.IsInstanceOfType(typeof (GEDCOMWriter), writer);
+            Assert.IsInstanceOf(typeof (GEDCOMWriter), writer);
         }
 
         #endregion

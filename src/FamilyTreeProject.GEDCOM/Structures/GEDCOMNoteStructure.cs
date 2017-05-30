@@ -34,6 +34,8 @@ namespace FamilyTreeProject.GEDCOM.Structures
         {
         }
 
+        public GEDCOMNoteStructure(int level, string tag, string data) : base(new GEDCOMRecord(level, "", "", tag, data)) { }
+
         #endregion
 
         #region Public Properties
