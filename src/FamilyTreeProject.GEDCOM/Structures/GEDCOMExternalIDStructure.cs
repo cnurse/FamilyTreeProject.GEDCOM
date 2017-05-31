@@ -21,6 +21,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        ///   Constructs a GEDCOMExternalIDStructure
+        /// </summary>
+        public GEDCOMExternalIDStructure()
+        {            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMExternalIDStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

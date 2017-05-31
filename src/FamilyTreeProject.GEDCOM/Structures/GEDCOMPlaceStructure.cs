@@ -25,6 +25,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMPlaceStructure
+        /// </summary>
+        public GEDCOMPlaceStructure() : base(new GEDCOMRecord(1, "", "", "PLAC", ""))
+        {            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMPlaceStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

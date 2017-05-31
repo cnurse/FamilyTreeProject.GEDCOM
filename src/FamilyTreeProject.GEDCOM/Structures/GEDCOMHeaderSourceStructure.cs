@@ -28,6 +28,9 @@ namespace FamilyTreeProject.GEDCOM.Structures
     {
         #region Constructors
 
+        /// <summary>
+        ///   Constructs a GEDCOMHeaderSourceStructure
+        /// </summary>
         public GEDCOMHeaderSourceStructure() : base(new GEDCOMRecord(1, "", "", "SOUR", ""))
         {
         }

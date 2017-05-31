@@ -29,6 +29,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        ///   Constructs a GEDCOMFamilyLinkStructure
+        /// </summary>        
+        public GEDCOMFamilyLinkStructure()
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMFamilyLinkStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

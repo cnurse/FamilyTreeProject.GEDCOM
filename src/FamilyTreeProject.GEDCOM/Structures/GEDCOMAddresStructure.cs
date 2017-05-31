@@ -28,14 +28,23 @@ namespace FamilyTreeProject.GEDCOM.Structures
     ///</remarks>
     public class GEDCOMAddressStructure : GEDCOMStructure
     {
+        /// <summary>
+        /// Constructs a GEDCOMAddressStructure
+        /// </summary>
         public GEDCOMAddressStructure() : base(new GEDCOMRecord(1, "", "", "ADDR", ""))
         {
         }
 
+        /// <summary>
+        /// Constructs a GEDCOMAddressStructure
+        /// </summary>
         public GEDCOMAddressStructure(int level) : base(new GEDCOMRecord(level, "", "", "ADDR", ""))
         {
         }
 
+        /// <summary>
+        /// Constructs a GEDCOMAddressStructure
+        /// </summary>
         public GEDCOMAddressStructure(int level, string address) : base(new GEDCOMRecord(level, "", "", "ADDR", address))
         {
         }

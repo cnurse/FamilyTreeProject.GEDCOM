@@ -116,6 +116,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         private readonly EventClass _eventClass = EventClass.Unknown;
 
         /// <summary>
+        ///   Constructs a GEDCOMEventStructure
+        /// </summary>
+        public GEDCOMEventStructure() : base(new GEDCOMRecord(1, "", "", "EVEN", ""))
+        {            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMEventStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

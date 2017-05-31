@@ -29,6 +29,14 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        ///   Constructs a GEDCOMSourceRepositoryCitationStructure
+        /// </summary>
+        /// <param name = "record">a GEDCOMRecord</param>
+        public GEDCOMSourceRepositoryCitationStructure() : base(new GEDCOMRecord(1, "", "", "REPO", ""))
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMSourceRepositoryCitationStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>
