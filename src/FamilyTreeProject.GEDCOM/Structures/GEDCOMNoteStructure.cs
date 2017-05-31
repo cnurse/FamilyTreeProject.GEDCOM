@@ -27,6 +27,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMNoteStructure
+        /// </summary>
+        public GEDCOMNoteStructure() : base(new GEDCOMRecord(1, "", "", "NOTE", ""))
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMNoteStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

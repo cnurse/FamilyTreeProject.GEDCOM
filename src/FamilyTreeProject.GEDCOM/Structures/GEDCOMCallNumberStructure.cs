@@ -20,6 +20,14 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMCallNumberStructure
+        /// </summary>
+        public GEDCOMCallNumberStructure() : base(new GEDCOMRecord(1, "", "", "CALN", ""))
+        {
+        }
+
+
+        /// <summary>
         ///   Constructs a GEDCOMCallNumberStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

@@ -9,6 +9,10 @@ namespace FamilyTreeProject.GEDCOM.Structures
 {
     public class GEDCOMUserDefinedStructure : GEDCOMRecord
     {
+        public GEDCOMUserDefinedStructure() : base(new GEDCOMRecord())
+        {            
+        }
+
         public GEDCOMUserDefinedStructure(string tag) : base(new GEDCOMRecord(1, "", "", "_" + tag, ""))
         {
         }

@@ -115,7 +115,10 @@ namespace FamilyTreeProject.GEDCOM.Structures
     {
         private readonly EventClass _eventClass = EventClass.Unknown;
 
-        public GEDCOMEventStructure()
+        /// <summary>
+        ///   Constructs a GEDCOMEventStructure
+        /// </summary>
+        public GEDCOMEventStructure() : base(new GEDCOMRecord(1, "", "", "EVEN", ""))
         {            
         }
 

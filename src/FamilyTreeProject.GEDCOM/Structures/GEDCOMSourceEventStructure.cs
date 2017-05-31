@@ -19,6 +19,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMSourceEventStructure
+        /// </summary>
+        public GEDCOMSourceEventStructure()
+        {            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMSourceEventStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

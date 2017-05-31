@@ -28,6 +28,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMAssociationStructure
+        /// </summary>
+        public GEDCOMAssociationStructure() : base(new GEDCOMRecord(1, "", "", "ASSO", ""))
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMAssociationStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

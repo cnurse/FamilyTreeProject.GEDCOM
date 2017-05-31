@@ -22,6 +22,9 @@ namespace FamilyTreeProject.GEDCOM.Structures
     {
         #region Constructors
 
+        /// <summary>
+        ///   Constructs a GEDCOMStructure
+        /// </summary>
         public GEDCOMStructure()
         {
         }
