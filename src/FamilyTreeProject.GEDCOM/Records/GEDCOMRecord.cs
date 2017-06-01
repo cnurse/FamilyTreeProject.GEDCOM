@@ -7,19 +7,29 @@
 // *****************************************
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using FamilyTreeProject.GEDCOM.Common;
+using FamilyTreeProject.GEDCOM.Extensions;
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
     public class GEDCOMRecord : IEquatable<GEDCOMRecord>
     {
+        #region Constants
+
+        private const int MAX_STRING_LENGTH = 255;
+        private const int SPACE_LENGTH = 1;
+
+        #endregion
+
         #region Fields
 
         private readonly GEDCOMRecordList _childRecords;
         private string _data;
-        private string _xRefId;
+        private string _xRefId;        
 
         #endregion
 
@@ -50,7 +60,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <param name = "xRefId">An optional XrefId reference</param>
         /// <param name = "tag">The tag name of the GEDCOM Record</param>
         /// <param name = "data">The data part of the GEDCOM Record</param>
-        internal GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
+        public GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
         {
             Level = level;
             Id = id;
@@ -159,7 +169,14 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         protected void AddChildRecord(string childId, string childXRefId, string childTag, string childData)
         {
-            ChildRecords.Add(new GEDCOMRecord(Level + 1, childId, childXRefId, childTag, childData));
+            AddChildRecord(childId, childXRefId, childTag, childData, null);
+        }
+
+        protected void AddChildRecord(string childId, string childXRefId, string childTag, string childData, int? level)
+        {
+            level = level ?? Level + 1;
+
+            ChildRecords.Add(new GEDCOMRecord((int)level, childId, childXRefId, childTag, childData));
         }
 
         protected string GetChildData(GEDCOMTag childTag)
@@ -266,8 +283,10 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <summary>
         ///   Splits the Data field into Child CONT records
         /// </summary>
-        public void SplitData()
+        public void SplitDataWithNewline()
         {
+            if (string.IsNullOrEmpty(Data)) { return; }
+
             string[] data = Data.Split(new[] {'\n'});
 
             if (data.Length > 1)
@@ -279,6 +298,28 @@ namespace FamilyTreeProject.GEDCOM.Records
                 for (int i = 1; i < data.Length; i++)
                 {
                     ChildRecords.Insert(i - 1, new GEDCOMRecord(Level + 1, "", "", "CONT", data[i]));
+                }
+            }
+        }
+
+        /// <summary>
+        ///   Splits the Data field into Child CONT records
+        /// </summary>
+        public void SplitLongNoteData()
+        {            
+            // 255 - Level(1) - Space(1) - Tag - Space(1)            
+            int lineLength = MAX_STRING_LENGTH - Level.ToString().Length - SPACE_LENGTH - Tag.Length - SPACE_LENGTH;
+            List<string> data = Data.Split(lineLength)?.ToList();
+
+            if (data?.Count() > 1)
+            {
+                //The original Data field holds the first part
+                Data = data[0];
+
+                //Add CONT records for eacdh other part
+                for (int i = 1; i < data.Count; i++)
+                {
+                    ChildRecords.Insert(i - 1, new GEDCOMRecord(Level + 1, "", "", "CONC", data[i]));
                 }
             }
         }

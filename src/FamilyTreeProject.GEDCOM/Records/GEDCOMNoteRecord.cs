@@ -26,6 +26,13 @@ namespace FamilyTreeProject.GEDCOM.Records
     public class GEDCOMNoteRecord : GEDCOMBaseRecord
     {
         /// <summary>
+        ///   Constructs a GEDCOMNoteRecord
+        /// </summary>
+        public GEDCOMNoteRecord(long id) : this(new GEDCOMRecord(0, "@N" + id + "@", "", "NOTE", ""))
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMNoteRecord from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

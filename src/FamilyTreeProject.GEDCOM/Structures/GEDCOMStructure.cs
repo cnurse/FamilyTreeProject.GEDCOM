@@ -23,11 +23,30 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        ///   Constructs a GEDCOMStructure
+        /// </summary>
+        public GEDCOMStructure()
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>
         public GEDCOMStructure(GEDCOMRecord record) : base(record)
         {
+        }
+
+        /// <summary>
+        ///   Constructs a GEDCOMStructure object
+        /// </summary>
+        /// <param name = "level">The level (or depth) of the GEDCOM Record</param>
+        /// <param name = "id">the id of the record</param>
+        /// <param name = "xRefId">An optional XrefId reference</param>
+        /// <param name = "tag">The tag name of the GEDCOM Record</param>
+        /// <param name = "data">The data part of the GEDCOM Record</param>
+        public GEDCOMStructure(int level, string id, string xRefId, string tag, string data) : this(new GEDCOMRecord(level, id, xRefId, tag, data))
+        {            
         }
 
         #endregion

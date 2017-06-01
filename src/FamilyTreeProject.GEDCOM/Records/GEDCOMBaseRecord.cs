@@ -6,6 +6,7 @@
 //                                         *
 // *****************************************
 
+using System;
 using System.Collections.Generic;
 
 using FamilyTreeProject.GEDCOM.Common;
@@ -28,7 +29,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         public GEDCOMBaseRecord(GEDCOMRecord record) : base(record)
         {
         }
-
+        
         /// <summary>
         ///   Gets the Automated Record ID
         /// </summary>

@@ -29,6 +29,14 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        ///  Constructs a GEDCOMMultimediaStructure
+        /// </summary>
+        public GEDCOMMultimediaStructure() : base(1, "", "", "OBJE", "")
+        {
+            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMMultimediaStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

@@ -28,6 +28,27 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMChangeDataStructure
+        /// </summary>
+        public GEDCOMChangeDateStructure() : this(new GEDCOMRecord(1, string.Empty, string.Empty, "CHAN", ""))
+        {            
+        }
+
+        /// <summary>
+        /// Constructs a GEDCOMChangeDataStructure with level and dateTime
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="dateTime"></param>
+        public GEDCOMChangeDateStructure(int level, DateTime dateTime) : this(new GEDCOMRecord(level, string.Empty, string.Empty, "CHAN", ""))
+        {
+            // May not need this
+            Level = level;
+
+            AddChildRecord(string.Empty, string.Empty, "DATE", dateTime.ToString("dd MMM yyyy").ToUpper());
+            AddChildRecord(string.Empty, string.Empty, "TIME", dateTime.ToString("HH:mm:ss"), Level + 2);            
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMChangeDateStructure from a GEDCOMRecord
         /// </summary>
         /// <param name = "record">a GEDCOMRecord</param>

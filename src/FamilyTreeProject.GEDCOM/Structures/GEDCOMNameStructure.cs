@@ -37,6 +37,13 @@ namespace FamilyTreeProject.GEDCOM.Structures
         #region Constructors
 
         /// <summary>
+        /// Constructs a GEDCOMNameStructure
+        /// </summary>
+        public GEDCOMNameStructure() : base(1, "", "", "NAME", "")
+        {
+        }
+
+        /// <summary>
         ///   Constructs a GEDCOMNameStructure
         /// </summary>
         /// <param name = "name">the name</param>
