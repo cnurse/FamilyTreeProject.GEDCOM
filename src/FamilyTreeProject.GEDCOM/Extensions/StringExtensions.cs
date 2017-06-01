@@ -16,6 +16,11 @@ namespace FamilyTreeProject.GEDCOM.Extensions
         /// <returns></returns>
         public static IEnumerable<string> Split(this string str, int chunkSize, string linePrefix = "")
         {
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
+
             int count = (int)Math.Ceiling((float)str.Length / chunkSize);
 
             List<string> splitStr = Enumerable.Range(0, count)

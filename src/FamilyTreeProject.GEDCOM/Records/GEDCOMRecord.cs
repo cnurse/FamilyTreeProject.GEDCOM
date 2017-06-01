@@ -309,9 +309,9 @@ namespace FamilyTreeProject.GEDCOM.Records
         {            
             // 255 - Level(1) - Space(1) - Tag - Space(1)            
             int lineLength = MAX_STRING_LENGTH - Level.ToString().Length - SPACE_LENGTH - Tag.Length - SPACE_LENGTH;
-            List<string> data = Data.Split(lineLength).ToList();
+            List<string> data = Data.Split(lineLength)?.ToList();
 
-            if (data.Count() > 1)
+            if (data?.Count() > 1)
             {
                 //The original Data field holds the first part
                 Data = data[0];
