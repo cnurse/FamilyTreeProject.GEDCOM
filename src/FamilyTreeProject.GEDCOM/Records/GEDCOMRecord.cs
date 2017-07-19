@@ -258,7 +258,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             XRefId = "";
         }
 
-        public int GetId()
+        public string GetId()
         {
             return GEDCOMUtil.GetId(Id);
         }

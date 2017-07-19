@@ -60,7 +60,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             }
 
             //Update Max Id Dictionary
-            if (item.GetId() > -1)
+            if (!string.IsNullOrEmpty(item.GetId()))
             {
                 UpdateMaxIdDictionary(item);
             }
@@ -113,7 +113,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         private void UpdateMaxIdDictionary(GEDCOMRecord item)
         {
             int maxId = -1;
-            int id = item.GetId();
+            int id = Int32.Parse(item.GetId());
 
             if (maxIdDictionary.TryGetValue(item.TagName, out maxId))
             {

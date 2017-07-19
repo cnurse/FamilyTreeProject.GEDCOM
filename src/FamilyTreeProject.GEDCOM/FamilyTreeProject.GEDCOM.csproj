@@ -1,95 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7D940B59-FBB4-4A6E-A8AD-2F698205E1EF}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FamilyTreeProject.GEDCOM</RootNamespace>
-    <AssemblyName>FamilyTreeProject.GEDCOM</AssemblyName>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>1570</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\EventClass.cs" />
-    <Compile Include="Common\ExternalIDType.cs" />
-    <Compile Include="Common\FamilyLinkType.cs" />
-    <Compile Include="Common\GEDCOMTag.cs" />
-    <Compile Include="Common\IndividualAttributeType.cs" />
-    <Compile Include="GEDCOMDocument.cs" />
-    <Compile Include="GEDCOMUtil.cs" />
-    <Compile Include="IO\GEDCOMReader.cs" />
-    <Compile Include="IO\GEDCOMWriter.cs" />
-    <Compile Include="Records\EqualityComparerGEDCOMRecord.cs" />
-    <Compile Include="Records\GEDCOMBaseRecord.cs" />
-    <Compile Include="Records\GEDCOMFamilyRecord.cs" />
-    <Compile Include="Records\GEDCOMHeaderRecord.cs" />
-    <Compile Include="Records\GEDCOMIndividualRecord.cs" />
-    <Compile Include="Records\GEDCOMMultimediaRecord.cs" />
-    <Compile Include="Records\GEDCOMNoteRecord.cs" />
-    <Compile Include="Records\GEDCOMRecord.cs" />
-    <Compile Include="Records\GEDCOMRecordFactory.cs" />
-    <Compile Include="Records\GEDCOMRecordList.cs" />
-    <Compile Include="Records\GEDCOMRepositoryRecord.cs" />
-    <Compile Include="Records\GEDCOMSourceRecord.cs" />
-    <Compile Include="Records\GEDCOMSubmissionRecord.cs" />
-    <Compile Include="Records\GEDCOMSubmitterRecord.cs" />
-    <Compile Include="Structures\GEDCOMAddresStructure.cs" />
-    <Compile Include="Structures\GEDCOMAssociationStructure.cs" />
-    <Compile Include="Structures\GEDCOMCallNumberStructure.cs" />
-    <Compile Include="Structures\GEDCOMChangeDateStructure.cs" />
-    <Compile Include="Structures\GEDCOMEventStructure.cs" />
-    <Compile Include="Structures\GEDCOMExternalIDStructure.cs" />
-    <Compile Include="Structures\GEDCOMFamilyLinkStructure.cs" />
-    <Compile Include="Structures\GEDCOMHeaderSourceStructure.cs" />
-    <Compile Include="Structures\GEDCOMMultimediaStructure.cs" />
-    <Compile Include="Structures\GEDCOMNameStructure.cs" />
-    <Compile Include="Structures\GEDCOMNoteStructure.cs" />
-    <Compile Include="Structures\GEDCOMPlaceStructure.cs" />
-    <Compile Include="Structures\GEDCOMSourceCitationStructure.cs" />
-    <Compile Include="Structures\GEDCOMSourceEventStructure.cs" />
-    <Compile Include="Structures\GEDCOMSourceRepositoryCitationStructure.cs" />
-    <Compile Include="Structures\GEDCOMStructure.cs" />
+    <ProjectReference Include="..\..\..\FamilyTreeProject.Core\src\FamilyTreeProject.Core\FamilyTreeProject.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FamilyTreeProject.Core">
-      <HintPath>..\..\..\FamilyTreeProject.Core\src\FamilyTreeProject.Core\bin\Debug\FamilyTreeProject.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

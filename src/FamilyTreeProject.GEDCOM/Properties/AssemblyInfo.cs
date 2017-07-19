@@ -12,14 +12,6 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("The Family Tree Project GEDCOM Library")]
-[assembly: AssemblyDescription("The Family Tree Project GEDCOM Library")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("The Family Tree Project GEDCOM Library")]
-[assembly: AssemblyCopyright("Charles Nurse ©  2015")]
-[assembly: AssemblyTrademark("The Family Tree Project")]
-[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -27,6 +19,4 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("1.1.0")]
-[assembly: AssemblyFileVersion("1.1.0")]
 [assembly: InternalsVisibleTo("FamilyTreeProject.GEDCOM.Tests")]

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FamilyTreeProject.GEDCOM.Tests</RootNamespace>
     <AssemblyName>FamilyTreeProject.GEDCOM.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <FileUpgradeFlags>
@@ -56,12 +56,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FamilyTreeProject.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FamilyTreeProject.Core.0.4.0\lib\FamilyTreeProject.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\FamilyTreeProject\src\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\Users\Charles.Nurse\OneDrive\Visual Studio Projects\MyFamilyTreeProject\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -176,6 +172,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\FamilyTreeProject.Core\src\FamilyTreeProject.Core\FamilyTreeProject.Core.csproj">
+      <Project>{ba58d9f1-31a6-4bde-9396-0aba7ee082d9}</Project>
+      <Name>FamilyTreeProject.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj">
       <Project>{7d940b59-fbb4-4a6e-a8ad-2f698205e1ef}</Project>
       <Name>FamilyTreeProject.GEDCOM</Name>

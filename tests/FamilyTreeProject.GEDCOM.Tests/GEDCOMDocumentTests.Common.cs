@@ -50,7 +50,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            var record = new GEDCOMIndividualRecord(1);
+            var record = new GEDCOMIndividualRecord("1");
             int count = document.Records.Count;
 
             //Act
@@ -65,7 +65,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            var record = new GEDCOMIndividualRecord(1);
+            var record = new GEDCOMIndividualRecord("1");
             int count = document.IndividualRecords.Count;
 
             //Act

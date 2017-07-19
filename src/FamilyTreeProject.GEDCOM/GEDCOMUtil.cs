@@ -52,7 +52,7 @@ namespace FamilyTreeProject.GEDCOM
             if (cleanId.ToUpperInvariant() != "@SUBM@")
             {
                 string prefix = idString.Substring(1, 1);
-                int id = GetId(idString);
+                string id = GetId(idString);
 
                 cleanId = CreateId(prefix, id);
             }
@@ -60,23 +60,19 @@ namespace FamilyTreeProject.GEDCOM
             return cleanId;
         }
 
-        public static string CreateId(string prefix, long id)
+        public static string CreateId(string prefix, string id)
         {
-            if (id < 0)
-            {
-                id = -id;
-            }
             return String.Format("@{0}{1}@", prefix, id);
         }
 
-        public static int GetId(string idString)
+        public static string GetId(string idString)
         {
             int id;
             if (String.IsNullOrEmpty(idString) || !Int32.TryParse(idString.Substring(2, idString.Length - 3), out id))
             {
                 id = -1;
             }
-            return id;
+            return id.ToString();
         }
 
         public static GEDCOMTag GetTag(string tag)

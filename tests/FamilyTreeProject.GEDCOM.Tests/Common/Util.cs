@@ -23,7 +23,7 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
 
         public static GEDCOMFamilyRecord CreateFamilyRecord(int recordNo)
         {
-            var family = new GEDCOMFamilyRecord(recordNo);
+            var family = new GEDCOMFamilyRecord(recordNo.ToString());
             GEDCOMRecord childRecord;
             GEDCOMEventStructure marrEvent;
             switch (recordNo)
@@ -65,14 +65,15 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
         public static GEDCOMHeaderRecord CreateHeaderRecord(string fileName)
         {
             var record = new GEDCOMHeaderRecord();
-            var source = new GEDCOMHeaderSourceStructure("FTM");
-            source.Company = "The Generations Network";
-            source.ProductName = "Family Tree Maker for Windows";
-            source.Version = "Family Tree Maker (17.0.0.416)";
+            var source = new GEDCOMHeaderSourceStructure("FTM")
+            {
+                Company = "The Generations Network",
+                ProductName = "Family Tree Maker for Windows",
+                Version = "Family Tree Maker (17.0.0.416)"
+            };
             record.Source = source;
 
-            var address = new GEDCOMAddressStructure(source.Level + 2);
-            address.Address = "360 W 4800 N\nProvo, UT 84604";
+            var address = new GEDCOMAddressStructure(source.Level + 2) {Address = "360 W 4800 N\nProvo, UT 84604"};
             record.Source.Address = address;
 
             record.Destination = "FTM";
@@ -89,7 +90,7 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
 
         public static GEDCOMIndividualRecord CreateIndividualRecord(int recordNo)
         {
-            var individual = new GEDCOMIndividualRecord(recordNo);
+            var individual = new GEDCOMIndividualRecord(recordNo.ToString());
             GEDCOMNameStructure name;
             GEDCOMEventStructure birthEvent;
             GEDCOMEventStructure deathEvent;

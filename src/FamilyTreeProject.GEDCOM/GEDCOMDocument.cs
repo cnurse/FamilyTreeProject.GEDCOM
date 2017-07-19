@@ -267,7 +267,7 @@ namespace FamilyTreeProject.GEDCOM
 
         public GEDCOMFamilyRecord SelectChildsFamilyRecord(string childId)
         {
-            if (childId == null)
+            if (String.IsNullOrEmpty(childId))
             {
                 throw new ArgumentNullException(typeof(string).Name);
             }
@@ -311,7 +311,7 @@ namespace FamilyTreeProject.GEDCOM
 
         public IEnumerable<GEDCOMFamilyRecord> SelectFamilyRecords(string individualId)
         {
-            if (individualId == null)
+            if (String.IsNullOrEmpty(individualId))
             {
                 throw new ArgumentNullException(typeof(string).Name);
             }

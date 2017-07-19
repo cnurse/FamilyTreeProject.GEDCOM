@@ -32,7 +32,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             document.LoadGEDCOM(GetEmbeddedFileString(fileName));
 
             //Act, Assert
-            Assert.Throws<ArgumentException>(() => document.SelectChildsFamilyRecord(childId));
+            Assert.Throws<ArgumentNullException>(() => document.SelectChildsFamilyRecord(childId));
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             document.LoadGEDCOM(GetEmbeddedFileString(fileName));
 
             //Act, Assert
-            Assert.Throws<ArgumentException>(() => document.SelectFamilyRecords(individualId));
+            Assert.Throws<ArgumentNullException>(() => document.SelectFamilyRecords(individualId));
         }
 
         [Test]

@@ -49,7 +49,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <summary>
         ///   Constructs a GEDCOMIndividualRecord
         /// </summary>
-        public GEDCOMIndividualRecord(long id) : this(new GEDCOMRecord(0, "@I" + id + "@", "", "INDI", ""))
+        public GEDCOMIndividualRecord(string id) : this(new GEDCOMRecord(0, "@I" + id + "@", "", "INDI", ""))
         {
         }
 
