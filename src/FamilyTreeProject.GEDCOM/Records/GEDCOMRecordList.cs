@@ -1,33 +1,27 @@
-//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 using FamilyTreeProject.GEDCOM.Common;
+// ReSharper disable UnusedMethodReturnValue.Local
+#pragma warning disable 1570
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
     public class GEDCOMRecordList : IList<GEDCOMRecord>
     {
-        private readonly List<GEDCOMRecord> list;
-        private readonly Dictionary<GEDCOMTag, int> maxIdDictionary;
-        private readonly Dictionary<GEDCOMTag, List<GEDCOMRecord>> tagDictionary;
+        private readonly List<GEDCOMRecord> _list;
+        private readonly Dictionary<GEDCOMTag, int> _maxIdDictionary;
+        private readonly Dictionary<GEDCOMTag, List<GEDCOMRecord>> _tagDictionary;
 
         #region Constructors
 
         public GEDCOMRecordList()
         {
-            list = new List<GEDCOMRecord>();
-            tagDictionary = new Dictionary<GEDCOMTag, List<GEDCOMRecord>>();
-            maxIdDictionary = new Dictionary<GEDCOMTag, int>();
+            _list = new List<GEDCOMRecord>();
+            _tagDictionary = new Dictionary<GEDCOMTag, List<GEDCOMRecord>>();
+            _maxIdDictionary = new Dictionary<GEDCOMTag, int>();
         }
 
         #endregion
@@ -36,8 +30,8 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         private void AddToDictionary(GEDCOMRecord item, bool addToList)
         {
-            List<GEDCOMRecord> tagList = null;
-            bool bFound = tagDictionary.TryGetValue(item.TagName, out tagList);
+            List<GEDCOMRecord> tagList;
+            bool bFound = _tagDictionary.TryGetValue(item.TagName, out tagList);
 
             if (bFound)
             {
@@ -56,7 +50,7 @@ namespace FamilyTreeProject.GEDCOM.Records
                 tagList.Add(item);
 
                 //Add List to Dictionary
-                tagDictionary[item.TagName] = tagList;
+                _tagDictionary[item.TagName] = tagList;
             }
 
             //Update Max Id Dictionary
@@ -68,8 +62,8 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         private void RemoveFromDictionary(GEDCOMRecord item)
         {
-            List<GEDCOMRecord> tagList = null;
-            bool bFound = tagDictionary.TryGetValue(item.TagName, out tagList);
+            List<GEDCOMRecord> tagList;
+            bool bFound = _tagDictionary.TryGetValue(item.TagName, out tagList);
 
             if (bFound)
             {
@@ -79,7 +73,7 @@ namespace FamilyTreeProject.GEDCOM.Records
                 if (tagList.Count == 0)
                 {
                     //remove the empty List from the dictionary
-                    tagDictionary.Remove(item.TagName);
+                    _tagDictionary.Remove(item.TagName);
                 }
             }
             else
@@ -90,10 +84,10 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         private bool TryGetRecord(GEDCOMTag tagName, out GEDCOMRecord item)
         {
-            List<GEDCOMRecord> tagList = null;
+            List<GEDCOMRecord> tagList;
             item = null;
 
-            bool bFound = tagDictionary.TryGetValue(tagName, out tagList);
+            bool bFound = _tagDictionary.TryGetValue(tagName, out tagList);
 
             if (bFound)
             {
@@ -112,19 +106,19 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         private void UpdateMaxIdDictionary(GEDCOMRecord item)
         {
-            int maxId = -1;
+            int maxId;
             int id = Int32.Parse(item.GetId());
 
-            if (maxIdDictionary.TryGetValue(item.TagName, out maxId))
+            if (_maxIdDictionary.TryGetValue(item.TagName, out maxId))
             {
                 if (id > maxId)
                 {
-                    maxIdDictionary[item.TagName] = id;
+                    _maxIdDictionary[item.TagName] = id;
                 }
             }
             else
             {
-                maxIdDictionary[item.TagName] = id;
+                _maxIdDictionary[item.TagName] = id;
             }
         }
 
@@ -146,7 +140,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         }
 
         /// <summary>
-        ///   Adds a list of records to the collection
+        ///   Adds a _list of records to the collection
         /// </summary>
         /// <param name = "records">A GEDCOMRecordList</param>
         public void AddRange(GEDCOMRecordList records)
@@ -154,7 +148,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             for (int i = 0; i < records.Count; i++)
             {
                 GEDCOMRecord item = records[i];
-                list.Add(item);
+                _list.Add(item);
                 AddToDictionary(item, true);
             }
         }
@@ -166,8 +160,8 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <returns>A GEDCOMRecord object (null if not present)</returns>
         public GEDCOMRecord GetLineByTag(GEDCOMTag tagName)
         {
-            GEDCOMRecord item = null;
-            bool bFound = TryGetRecord(tagName, out item);
+            GEDCOMRecord item;
+            TryGetRecord(tagName, out item);
             return item;
         }
 
@@ -189,9 +183,9 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <returns>A GEDCOMRecords collection (empty if not present)</returns>
         public GEDCOMRecordList GetLinesByTag(GEDCOMTag tagName)
         {
-            List<GEDCOMRecord> tagList = null;
+            List<GEDCOMRecord> tagList;
             GEDCOMRecordList records = new GEDCOMRecordList();
-            bool bFound = tagDictionary.TryGetValue(tagName, out tagList);
+            bool bFound = _tagDictionary.TryGetValue(tagName, out tagList);
 
             if (bFound)
             {
@@ -212,9 +206,9 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <returns>A List<TRecord> (empty if not present)</returns>
         public List<TRecord> GetLinesByTag<TRecord>(GEDCOMTag tagName) where TRecord : GEDCOMRecord
         {
-            List<GEDCOMRecord> tagList = null;
+            List<GEDCOMRecord> tagList;
             List<TRecord> records = new List<TRecord>();
-            bool bFound = tagDictionary.TryGetValue(tagName, out tagList);
+            bool bFound = _tagDictionary.TryGetValue(tagName, out tagList);
 
             if (bFound)
             {
@@ -231,7 +225,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         ///   The GetLinesByTags method returns a GEDCOMRecords Collection of lines with
         ///   one of the tags in the passed in string
         /// </summary>
-        /// <param name = "tags">The provided list of tags</param>
+        /// <param name = "tags">The provided _list of tags</param>
         /// <returns>A GEDCOMRecords collection (empty if not present)</returns>
         public List<TRecord> GetLinesByTags<TRecord>(string tags) where TRecord : GEDCOMRecord
         {
@@ -249,14 +243,9 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         public int GetNextId(GEDCOMTag tagName)
         {
-            return (maxIdDictionary.ContainsKey(tagName)) ? maxIdDictionary[tagName] + 1 : 1;
+            return (_maxIdDictionary.ContainsKey(tagName)) ? _maxIdDictionary[tagName] + 1 : 1;
         }
 
-        /// <summary>
-        ///   GetRecordData fetchs the Data for the specified Record
-        /// </summary>
-        /// <param name = "tag">The tag to fetch the data for</param>
-        /// <returns>A string</returns>
         /// <summary>
         ///   GetRecordData fetchs the Data for the specified Record
         /// </summary>
@@ -355,7 +344,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (GEDCOMRecord record in list)
+            foreach (GEDCOMRecord record in _list)
             {
                 sb.AppendLine(record.ToString());
             }
@@ -369,51 +358,51 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         public int IndexOf(GEDCOMRecord item)
         {
-            return list.IndexOf(item);
+            return _list.IndexOf(item);
         }
 
         public void Insert(int index, GEDCOMRecord item)
         {
-            list.Insert(index, item);
+            _list.Insert(index, item);
             AddToDictionary(item, true);
         }
 
         public void RemoveAt(int index)
         {
-            RemoveFromDictionary(list[index]);
-            list.RemoveAt(index);
+            RemoveFromDictionary(_list[index]);
+            _list.RemoveAt(index);
         }
 
         public GEDCOMRecord this[int index]
         {
-            get { return list[index]; }
+            get { return _list[index]; }
             set
             {
-                list[index] = value;
+                _list[index] = value;
                 AddToDictionary(value, false);
             }
         }
 
         public void Add(GEDCOMRecord item)
         {
-            list.Add(item);
+            _list.Add(item);
             AddToDictionary(item, true);
         }
 
         public void Clear()
         {
-            list.Clear();
-            tagDictionary.Clear();
+            _list.Clear();
+            _tagDictionary.Clear();
         }
 
         public bool Contains(GEDCOMRecord item)
         {
-            return list.Contains(item);
+            return _list.Contains(item);
         }
 
         public void CopyTo(GEDCOMRecord[] array, int arrayIndex)
         {
-            list.CopyTo(array, arrayIndex);
+            _list.CopyTo(array, arrayIndex);
             foreach (GEDCOMRecord item in array)
             {
                 AddToDictionary(item, true);
@@ -422,7 +411,7 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         public int Count
         {
-            get { return list.Count; }
+            get { return _list.Count; }
         }
 
         public bool IsReadOnly
@@ -433,17 +422,17 @@ namespace FamilyTreeProject.GEDCOM.Records
         public bool Remove(GEDCOMRecord item)
         {
             RemoveFromDictionary(item);
-            return list.Remove(item);
+            return _list.Remove(item);
         }
 
         public IEnumerator<GEDCOMRecord> GetEnumerator()
         {
-            return list.GetEnumerator();
+            return _list.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return list.GetEnumerator();
+            return _list.GetEnumerator();
         }
 
         #endregion

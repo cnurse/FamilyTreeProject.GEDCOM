@@ -1,12 +1,5 @@
-//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
 using FamilyTreeProject.GEDCOM.Records;
+#pragma warning disable 1570
 
 namespace FamilyTreeProject.GEDCOM.Structures
 {

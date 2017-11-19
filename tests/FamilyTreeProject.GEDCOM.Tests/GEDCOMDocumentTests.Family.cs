@@ -1,16 +1,5 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
+﻿using System;
 using System.Linq;
-
-using FamilyTreeProject.GEDCOM.Tests.Common;
-
 using NUnit.Framework;
 
 namespace FamilyTreeProject.GEDCOM.Tests
@@ -18,7 +7,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    public partial class GEDCOMDocumentTests
     {
         #region SelectChildsFamilyRecord
 
@@ -230,7 +219,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Arrange
             var document = new GEDCOMDocument();
             document.LoadGEDCOM(GetEmbeddedFileString(fileName));
-            string husbandId = String.Empty;
 
             //Act
             var record = document.SelectFamilyRecords(wifeId).SingleOrDefault();

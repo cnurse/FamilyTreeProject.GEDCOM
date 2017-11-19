@@ -1,16 +1,8 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
-
-using FamilyTreeProject.Common;
+﻿using System;
+using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
+// ReSharper disable InconsistentNaming
 
 namespace FamilyTreeProject.GEDCOM.Tests.Common
 {

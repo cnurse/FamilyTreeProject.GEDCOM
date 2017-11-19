@@ -1,12 +1,4 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -169,6 +161,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Assert
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => document.Load(reader));
         }
 
@@ -179,6 +172,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Assert
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => document.Load(reader));
         }
 
@@ -348,6 +342,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Assert
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => document.Save(writer));
         }
 
@@ -358,6 +353,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Assert
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => document.Save(writer));
         }
 

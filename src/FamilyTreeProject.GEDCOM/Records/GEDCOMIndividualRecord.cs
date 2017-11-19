@@ -1,17 +1,10 @@
-//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
 using System;
 using System.Collections.Generic;
-using FamilyTreeProject.Common;
+using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Structures;
 // ReSharper disable ConvertPropertyToExpressionBody
+#pragma warning disable 1570
 
 namespace FamilyTreeProject.GEDCOM.Records
 {

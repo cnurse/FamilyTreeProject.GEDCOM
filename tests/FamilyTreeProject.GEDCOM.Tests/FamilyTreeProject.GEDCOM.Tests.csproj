@@ -1,192 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{002EB1C2-CBBD-4A4E-8EA0-9B5D51D37C87}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FamilyTreeProject.GEDCOM.Tests</RootNamespace>
-    <AssemblyName>FamilyTreeProject.GEDCOM.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Users\Charles.Nurse\OneDrive\Visual Studio Projects\MyFamilyTreeProject\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Common\GEDCOMAssert.cs" />
-    <Compile Include="Common\GEDCOMTestBase.cs" />
-    <Compile Include="Common\Util.cs" />
-    <Compile Include="GEDCOMDocumentTests.Individual.cs" />
-    <Compile Include="GEDCOMDocumentTests.Family.cs" />
-    <Compile Include="GEDCOMWriterTests.cs" />
-    <Compile Include="GEDCOMDocumentTests.Common.cs" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GEDCOMReaderTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\Empty.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\NoRecords.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\OneFamily.ged" />
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\TwoIndividuals.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\Header.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\Header.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\TwoIndividuals.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoIndividuals.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\NoRecords.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\NoRecordsSave.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\OneFamily.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\OneFamilySave.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\OneIndividual.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\OneIndividualSave.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\ThreeFamilies.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\TwoFamilies.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\TwoFamiliesSave.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\TwoIndividuals.ged" />
+    <None Remove="TestFiles\GEDCOMDocumentTests\TwoIndividualsSave.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\Empty.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\Header.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\NoRecords.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\OneFamily.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\OneIndividual.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\TwoFamilies.ged" />
+    <None Remove="TestFiles\GEDCOMReaderTests\TwoIndividuals.ged" />
+    <None Remove="TestFiles\GEDCOMWriterTests\Header.ged" />
+    <None Remove="TestFiles\GEDCOMWriterTests\OneFamily.ged" />
+    <None Remove="TestFiles\GEDCOMWriterTests\OneIndividual.ged" />
+    <None Remove="TestFiles\GEDCOMWriterTests\TwoFamilies.ged" />
+    <None Remove="TestFiles\GEDCOMWriterTests\TwoIndividuals.ged" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\NoRecords.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoIndividualsSave.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\OneIndividual.ged" />
-    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\OneIndividual.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneIndividual.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneIndividualSave.ged" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\NoRecordsSave.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\TwoFamilies.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\OneFamily.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\TwoFamilies.ged" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneFamily.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoFamilies.ged" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneFamilySave.ged" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoFamiliesSave.ged" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\OneIndividualSave.ged" />
     <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\ThreeFamilies.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoFamilies.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoFamiliesSave.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoIndividuals.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMDocumentTests\TwoIndividualsSave.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\Empty.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\Header.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\NoRecords.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\OneFamily.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\OneIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\TwoFamilies.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMReaderTests\TwoIndividuals.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\Header.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\OneFamily.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\OneIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\TwoFamilies.ged" />
+    <EmbeddedResource Include="TestFiles\GEDCOMWriterTests\TwoIndividuals.ged" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\FamilyTreeProject.Core\src\FamilyTreeProject.Core\FamilyTreeProject.Core.csproj">
-      <Project>{ba58d9f1-31a6-4bde-9396-0aba7ee082d9}</Project>
-      <Name>FamilyTreeProject.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj">
-      <Project>{7d940b59-fbb4-4a6e-a8ad-2f698205e1ef}</Project>
-      <Name>FamilyTreeProject.GEDCOM</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

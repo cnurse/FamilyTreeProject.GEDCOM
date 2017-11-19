@@ -1,12 +1,4 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 
@@ -47,6 +39,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_Create_Throws_Exception_If_TextReader_Parameter_Is_Null()
         {
             StringReader reader = null;
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => GEDCOMReader.Create(reader));
         }
 
@@ -54,6 +47,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_Create_Throws_Exception_If_String_Parameter_Is_Null()
         {
             String text = null;
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => GEDCOMReader.Create(text));
         }
 
@@ -96,6 +90,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             using (Stream s = GetEmbeddedFileStream("OneFamily"))
             {
                 reader = GEDCOMReader.Create(s);
+                // ReSharper disable once RedundantAssignment
                 bool moveResult = reader.MoveToFamily();
 
                 reader.ReadRecord();
@@ -146,6 +141,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             using (Stream s = GetEmbeddedFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
+                // ReSharper disable once RedundantAssignment
                 bool moveResult = reader.MoveToIndividual();
 
                 reader.ReadRecord();
@@ -192,10 +188,10 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMReader_MoveToIndividual_Returns_False_If_No_More_Individual_Records()
         {
-            GEDCOMReader reader;
             using (Stream s = GetEmbeddedFileStream("OneIndividual"))
             {
-                reader = GEDCOMReader.Create(s);
+                var reader = GEDCOMReader.Create(s);
+                // ReSharper disable once RedundantAssignment
                 bool moveResult = reader.MoveToIndividual();
 
                 reader.ReadRecord();
@@ -242,17 +238,20 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMReader_MoveToRecord_Returns_False_If_No_More_Records()
         {
-            GEDCOMReader reader;
+            // ReSharper disable once NotAccessedVariable
             GEDCOMRecord record;
             using (Stream s = GetEmbeddedFileStream("OneIndividual"))
             {
-                reader = GEDCOMReader.Create(s);
+                var reader = GEDCOMReader.Create(s);
+                // ReSharper disable once RedundantAssignment
                 bool moveResult = reader.MoveToRecord();
 
+                // ReSharper disable RedundantAssignment
                 record = reader.ReadRecord(); //HEAD
                 record = reader.ReadRecord(); //SUBM
                 record = reader.ReadRecord(); //INDI
                 record = reader.ReadRecord(); //TRLR
+                // ReSharper restore RedundantAssignment
 
                 moveResult = reader.MoveToRecord();
 

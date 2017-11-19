@@ -1,14 +1,5 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
+﻿using System;
 using System.IO;
-using System.Reflection;
 
 namespace FamilyTreeProject.GEDCOM.Tests.Common
 {
@@ -42,7 +33,7 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
             string text = "";
             using (var reader = new StreamReader(GetEmbeddedFileStream(fileName)))
             {
-                string line = "";
+                string line;
                 while ((line = reader.ReadLine()) != null)
                 {
                     text += String.Format("{0}\n", line);
@@ -72,7 +63,7 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
             string text = "";
             using (StreamReader reader = new StreamReader(new FileStream(GetFileName(fileName), FileMode.Open, FileAccess.Read)))
             {
-                string line = "";
+                string line;
                 while ((line = reader.ReadLine()) != null)
                 {
                     text += String.Format("{0}\n", line);

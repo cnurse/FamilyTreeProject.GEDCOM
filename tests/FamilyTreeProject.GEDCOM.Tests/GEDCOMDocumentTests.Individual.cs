@@ -1,17 +1,4 @@
-﻿//******************************************
-//  Copyright (C) 2014-2015 Charles Nurse  *
-//                                         *
-//  Licensed under MIT License             *
-//  (see included LICENSE)                 *
-//                                         *
-// *****************************************
-
-using System;
-using System.IO;
-using System.Reflection;
-
-using FamilyTreeProject.GEDCOM.Tests.Common;
-
+﻿using System;
 using NUnit.Framework;
 
 namespace FamilyTreeProject.GEDCOM.Tests
@@ -19,7 +6,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    public partial class GEDCOMDocumentTests
     {
         #region SelectIndividualRecord
 
