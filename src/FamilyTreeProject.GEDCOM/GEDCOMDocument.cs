@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using FamilyTreeProject.Core.Data;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.IO;
 using FamilyTreeProject.GEDCOM.Records;
@@ -14,10 +14,8 @@ namespace FamilyTreeProject.GEDCOM
     /// <summary>
     ///   This Class provides utilities for working with GEDCOM 5.5 data
     /// </summary>
-    public class GEDCOMDocument
+    public class GEDCOMDocument : IDocument
     {
-        #region Private Members
-
         private GEDCOMRecordList _familyRecords;
         private GEDCOMHeaderRecord _headerRecord;
         private GEDCOMRecordList _individualRecords;
@@ -28,10 +26,6 @@ namespace FamilyTreeProject.GEDCOM
         private GEDCOMRecordList _sourceRecords;
         private GEDCOMRecordList _submitterRecords;
         private GEDCOMRecord _trailerRecord;
-
-        #endregion
-
-        #region Public Properties
 
         public GEDCOMRecordList FamilyRecords
         {
@@ -77,10 +71,6 @@ namespace FamilyTreeProject.GEDCOM
         {
             get { return _submitterRecords ?? (_submitterRecords = _records.GetLinesByTag(GEDCOMTag.SUBM)); }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         ///   Adds a record to the GEDCOM Document
@@ -408,8 +398,6 @@ namespace FamilyTreeProject.GEDCOM
         {
             return _records.ToString();
         }
-
-        #endregion
 
         private void ClearList(GEDCOMTag tag)
         {
