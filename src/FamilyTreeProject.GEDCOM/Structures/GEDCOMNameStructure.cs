@@ -25,7 +25,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
     public class GEDCOMNameStructure : GEDCOMStructure
     {
         // Expression pattern used to parse the Name record.
-        private readonly Regex nameReg = new Regex(@"(?<first>[\w\s]*)/(?<last>[\S]*)/");
+        private readonly Regex _nameReg = new Regex(@"(?<first>[\w\s]*)/(?<last>[\S]*)/");
 
         #region Constructors
 
@@ -69,7 +69,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
                 string givenName = ChildRecords.GetRecordData(GEDCOMTag.GIVN);
                 if (String.IsNullOrEmpty(givenName) && !String.IsNullOrEmpty(FullName))
                 {
-                    Match match = nameReg.Match(FullName);
+                    Match match = _nameReg.Match(FullName);
                     givenName = match.Groups["first"].Value.Trim();
                 }
                 return givenName;
@@ -87,7 +87,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
                 string lastName = ChildRecords.GetRecordData(GEDCOMTag.SURN);
                 if (String.IsNullOrEmpty(lastName) && !String.IsNullOrEmpty(FullName))
                 {
-                    Match match = nameReg.Match(FullName);
+                    Match match = _nameReg.Match(FullName);
                     lastName = match.Groups["last"].Value.Trim();
                 }
                 return lastName;

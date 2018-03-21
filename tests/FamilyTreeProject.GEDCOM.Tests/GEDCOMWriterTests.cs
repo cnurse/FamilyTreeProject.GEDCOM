@@ -40,6 +40,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMWriter_Create_Throws_Exception_If_TextWriter_Parameter_Is_Null()
         {
             StringWriter stringWriter = null;
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => GEDCOMWriter.Create(stringWriter));
         }
 
@@ -47,6 +48,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMWriter_Create_Throws_Exception_If_StringBuilder_Parameter_Is_Null()
         {
             StringBuilder sb = null;
+            // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => GEDCOMWriter.Create(sb));
         }
 

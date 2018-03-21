@@ -140,9 +140,9 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// </summary>
         /// <param name = "text">The text to parse</param>
         /// <returns>A flag that indicates whther the record was parsed</returns>
-        private bool Parse(string text)
+        private void Parse(string text)
         {
-            return GEDCOMUtil.ParseGEDCOM(text, this);
+            GEDCOMUtil.ParseGEDCOM(text, this);
         }
 
         #endregion
@@ -236,7 +236,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <param name = "data">The string to append</param>
         public void AppendData(String data)
         {
-            this._data += data;
+            _data += data;
         }
 
         /// <summary>

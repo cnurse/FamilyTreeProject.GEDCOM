@@ -69,19 +69,21 @@ namespace FamilyTreeProject.GEDCOM.Structures
                     //Add new Company Record
                     ChildRecords.Add(new GEDCOMRecord(Level + 1, "", "", "CORP", ""));
                 }
-
-                GEDCOMAddressStructure address = CompanyRecord.ChildRecords.GetLineByTag<GEDCOMAddressStructure>(GEDCOMTag.ADDR);
-
-                if (address == null)
-                {
-                    //Add address structure
-                    CompanyRecord.ChildRecords.Add(value);
-                }
                 else
                 {
-                    //Replace address structure
-                    int index = CompanyRecord.ChildRecords.IndexOf(address);
-                    CompanyRecord.ChildRecords[index] = value;
+                    GEDCOMAddressStructure address = CompanyRecord.ChildRecords.GetLineByTag<GEDCOMAddressStructure>(GEDCOMTag.ADDR);
+
+                    if (address == null)
+                    {
+                        //Add address structure
+                        CompanyRecord.ChildRecords.Add(value);
+                    }
+                    else
+                    {
+                        //Replace address structure
+                        int index = CompanyRecord.ChildRecords.IndexOf(address);
+                        CompanyRecord.ChildRecords[index] = value;
+                    }
                 }
             }
         }
