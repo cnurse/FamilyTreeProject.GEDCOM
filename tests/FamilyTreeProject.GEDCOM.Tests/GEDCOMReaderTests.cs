@@ -17,16 +17,10 @@ namespace FamilyTreeProject.GEDCOM.Tests
     [TestFixture]
     public class GEDCOMReaderTests : GEDCOMTestBase
     {
-        #region Protected Properties
-
         protected override string EmbeddedFilePath
         {
             get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMReaderTests"; }
         }
-
-        #endregion
-
-        #region Create
 
         [Test]
         public void GEDCOMReader_Create_Throws_Exception_If_Stream_Parameter_Is_Null()
@@ -50,10 +44,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             // ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<ArgumentNullException>(() => GEDCOMReader.Create(text));
         }
-
-        #endregion
-
-        #region MoveToFamily
 
         [Test]
         public void GEDCOMReader_MoveToFamily_Returns_False_If_No_Family_Record()
@@ -102,10 +92,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             }
         }
 
-        #endregion
-
-        #region MoveToHeader
-
         [Test]
         public void GEDCOMReader_MoveToHeader_Returns_False_If_No_Header_Record()
         {
@@ -153,10 +139,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             }
         }
 
-        #endregion
-
-        #region MoveToIndividual
-
         [Test]
         public void GEDCOMReader_MoveToIndividual_Returns_False_If_No_Individual_Record()
         {
@@ -202,10 +184,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 Assert.IsFalse(moveResult);
             }
         }
-
-        #endregion
-
-        #region MoveToRecord
 
         [Test]
         public void GEDCOMReader_MoveToRecord_Returns_False_If_No_Records()
@@ -259,10 +237,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 Assert.IsFalse(moveResult);
             }
         }
-
-        #endregion
-
-        #region Read
 
         [Test]
         [TestCase("Empty", 0)]
@@ -425,10 +399,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.IsValidRecord(placeRecord, 2, "AnyTown", false, -1);
         }
 
-        #endregion
-
-        #region ReadFamilies
-
         [Test]
         [TestCase("NoRecords", 0)]
         [TestCase("OneFamily", 1)]
@@ -454,10 +424,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 Assert.IsInstanceOf<GEDCOMFamilyRecord>(records[i]);
             }
         }
-
-        #endregion
-
-        #region ReadFamily
 
         [Test]
         public void GEDCOMReader_ReadFamily_Returns_Null_If_No_Family_Records()
@@ -514,10 +480,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.FamilyIsEqual(expectedRecord, actualRecord);
         }
 
-        #endregion
-
-        #region ReadHeader
-
         [Test]
         public void GEDCOMReader_ReadHeader_Returns_Null_If_No_Header_Record()
         {
@@ -551,10 +513,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.IsValidHeader(actualRecord);
             GEDCOMAssert.HeaderIsEqual(expectedRecord, actualRecord);
         }
-
-        #endregion
-
-        #region ReadIndividual
 
         [Test]
         public void GEDCOMReader_ReadIndividual_Returns_Null_If_No_Individual_Records()
@@ -611,10 +569,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.IndividualIsEqual(expectedRecord, actualRecord);
         }
 
-        #endregion
-
-        #region ReadIndividuals
-
         [Test]
         [TestCase("NoRecords", 0)]
         [TestCase("OneIndividual", 1)]
@@ -640,13 +594,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
                 Assert.IsInstanceOf<GEDCOMIndividualRecord>(records[i]);
             }
         }
-
-        #endregion
-
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
     }
 }

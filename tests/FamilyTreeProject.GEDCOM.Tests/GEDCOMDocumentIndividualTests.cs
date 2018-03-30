@@ -1,4 +1,5 @@
 ﻿using System;
+using FamilyTreeProject.GEDCOM.Tests.Common;
 using NUnit.Framework;
 
 namespace FamilyTreeProject.GEDCOM.Tests
@@ -6,9 +7,12 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests
-    {
-        #region SelectIndividualRecord
+    public class GEDCOMDocumentIndividualTests : GEDCOMTestBase
+    {        
+        protected override string EmbeddedFilePath
+        {
+            get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMDocumentTests"; }
+        }
 
         [Test]
         [TestCase("OneIndividual", 1)]
@@ -45,8 +49,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.IsNull(record);
         }
-
-        #endregion
-
     }
 }

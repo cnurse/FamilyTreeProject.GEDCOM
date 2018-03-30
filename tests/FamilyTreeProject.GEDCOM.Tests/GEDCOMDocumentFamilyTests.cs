@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FamilyTreeProject.GEDCOM.Tests.Common;
 using NUnit.Framework;
 
 namespace FamilyTreeProject.GEDCOM.Tests
@@ -7,10 +8,13 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests
+    public class GEDCOMDocumentFamilyTests : GEDCOMTestBase
     {
-        #region SelectChildsFamilyRecord
-
+        protected override string EmbeddedFilePath
+        {
+            get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMDocumentTests"; }
+        }
+        
         [Test]
         [TestCase("OneFamily", null)]
         [TestCase("OneFamily", "")]
@@ -58,10 +62,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.IsNull(record);
         }
-
-        #endregion
-
-        #region SelectFamilyRecord
 
         [Test]
         [TestCase("OneFamily", "@F1@")]
@@ -155,10 +155,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             Assert.IsNull(record);
         }
 
-        #endregion
-
-        #region SelectFamilyRecords
-
         [Test]
         [TestCase("OneFamily", null)]
         [TestCase("OneFamily", "")]
@@ -227,7 +223,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
             Assert.IsNotNull(record);
             Assert.AreEqual(record.Id, familyId);
         }
-
-        #endregion
     }
 }

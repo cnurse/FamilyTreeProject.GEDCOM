@@ -328,10 +328,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
 
         #endregion
 
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
     }
 }

@@ -15,18 +15,12 @@ namespace FamilyTreeProject.GEDCOM.Tests
     ///   Summary description for GEDCOMTests
     /// </summary>
     [TestFixture]
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    public class GEDCOMDocumentCommonTests : GEDCOMTestBase
     {
-        #region Protected Properties
-
         protected override string EmbeddedFilePath
         {
             get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMDocumentTests"; }
         }
-
-        #endregion
-
-        #region AddRecord
 
         [Test]
         public void GEDCOMDocument_AddRecord_Throws_If_Record_IsNull()
@@ -80,10 +74,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.IsNotNull(document.SelectHeader());
         }
-
-        #endregion
-
-        #region AddRecords
 
         [Test]
         public void GEDCOMDocument_AddRecords_Exception_If_RecordList_IsNull()
@@ -139,10 +129,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.AreEqual(count + recordCount, document.IndividualRecords.Count);
         }
-
-        #endregion
-
-        #region Load
 
         [Test]
         public void GEDCOMDocument_Load_Throws_If_Stream_Parameter_IsNull()
@@ -231,10 +217,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.HeaderIsEqual(Util.CreateHeaderRecord(fileName), document.SelectHeader());
         }
 
-        #endregion
-
-        #region LoadGEDCOM
-
         [Test]
         [TestCase("NoRecords", 0)]
         [TestCase("OneIndividual", 1)]
@@ -250,10 +232,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.AreEqual(recordCount, document.IndividualRecords.Count);
         }
-
-        #endregion
-
-        #region RemoveRecord
 
         [Test]
         public void GEDCOMDocument_RemoveRecord_Throws_If_Record_IsNull()
@@ -320,10 +298,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => document.RemoveRecord(record));
         }
-
-        #endregion
-
-        #region Save
 
         [Test]
         public void GEDCOMDocument_Save_If_Stream_Parameter_IsNull()
@@ -438,10 +412,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), sb);
         }
 
-        #endregion
-
-        #region SaveGEDCOM
-
         [Test]
         [TestCase("NoRecordsSave", 0, 0)]
         [TestCase("OneIndividualSave", 1, 0)]
@@ -465,14 +435,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
             //Assert
             GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
         }
-
-        #endregion
-
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
-
     }
 }
