@@ -54,7 +54,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             }
 
             //Update Max Id Dictionary
-            if (!string.IsNullOrEmpty(item.GetId()))
+            if (item.GetId() > -1)
             {
                 UpdateMaxIdDictionary(item);
             }
@@ -107,18 +107,18 @@ namespace FamilyTreeProject.GEDCOM.Records
         private void UpdateMaxIdDictionary(GEDCOMRecord item)
         {
             int maxId;
-            int id = Int32.Parse(item.GetId());
+            int? id = item.GetId();
 
             if (_maxIdDictionary.TryGetValue(item.TagName, out maxId))
             {
                 if (id > maxId)
                 {
-                    _maxIdDictionary[item.TagName] = id;
+                    _maxIdDictionary[item.TagName] = id.Value;
                 }
             }
             else
             {
-                _maxIdDictionary[item.TagName] = id;
+                _maxIdDictionary[item.TagName] = id.Value;
             }
         }
 
