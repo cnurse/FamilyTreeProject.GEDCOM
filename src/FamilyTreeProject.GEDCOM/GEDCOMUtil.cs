@@ -46,13 +46,18 @@ namespace FamilyTreeProject.GEDCOM
                 string prefix = idString.Substring(1, 1);
                 int? id = GetId(idString);
 
-                cleanId = CreateId(prefix, id);
+                cleanId = CreateId(prefix, id.Value);
             }
 
             return cleanId;
         }
 
-        public static string CreateId(string prefix, int? id)
+        public static string CreateId(string prefix, int id)
+        {
+            return String.Format("@{0}{1}@", prefix, id);
+        }
+
+        public static string CreateId(string prefix, string id)
         {
             return String.Format("@{0}{1}@", prefix, id);
         }
