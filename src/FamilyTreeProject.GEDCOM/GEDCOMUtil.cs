@@ -46,6 +46,7 @@ namespace FamilyTreeProject.GEDCOM
                 string prefix = idString.Substring(1, 1);
                 int? id = GetId(idString);
 
+                // ReSharper disable once PossibleInvalidOperationException
                 cleanId = CreateId(prefix, id.Value);
             }
 

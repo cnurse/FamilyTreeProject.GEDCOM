@@ -304,6 +304,7 @@ namespace FamilyTreeProject.GEDCOM.Records
 
         public bool Equals(GEDCOMRecord other)
         {
+            // ReSharper disable once PossibleNullReferenceException
             if (Id == other.Id && Level == other.Level && Data == other.Data && Tag == other.Tag && XRefId == other.XRefId)
             {
                 return true;

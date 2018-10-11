@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+// ReSharper disable UnusedMember.Global
 
 namespace FamilyTreeProject.GEDCOM.Records
 {
@@ -10,10 +11,8 @@ namespace FamilyTreeProject.GEDCOM.Records
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public override int GetHashCode(GEDCOMRecord obj)

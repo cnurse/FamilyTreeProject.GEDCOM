@@ -118,6 +118,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             }
             else
             {
+                // ReSharper disable once PossibleInvalidOperationException
                 _maxIdDictionary[item.TagName] = id.Value;
             }
         }
@@ -256,7 +257,7 @@ namespace FamilyTreeProject.GEDCOM.Records
             string tagData = String.Empty;
             GEDCOMRecord record = GetLineByTag(tagName);
 
-            if (record != null && tagData != null)
+            if (record != null)
             {
                 tagData = record.Data;
             }
