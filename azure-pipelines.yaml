@@ -1,0 +1,56 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+
+# Restore Nuget Dependencies
+- task: DotNetCoreCLI@2
+  displayName: Restore Nuget Packages
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    vstsFeed: '4b3f70cd-7314-4609-bd13-70739cdfb994'
+
+# Build project
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    
+# Run Tests
+- task: DotNetCoreCLI@2
+  displayName: 'Eecute Tests'
+  inputs:
+    command: 'test'
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# Create Nuget package
+- task: DotNetCoreCLI@2
+  displayName: 'Package Nuget Files'
+  inputs: 
+    command: 'pack'
+    outputDir: '$(Build.ArtifactStagingDirectory)'
+
+# Push Nuget Package to Feed
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Nuget Files'
+  inputs:
+    command: 'push'
+    searchPatternPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.Tests.nupkg'
+    feedPublish: 'Keydance'

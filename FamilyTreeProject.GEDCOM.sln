@@ -1,18 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22512.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTreeProject.GEDCOM", "src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj", "{7D940B59-FBB4-4A6E-A8AD-2F698205E1EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyTreeProject.GEDCOM", "src\FamilyTreeProject.GEDCOM\FamilyTreeProject.GEDCOM.csproj", "{7D940B59-FBB4-4A6E-A8AD-2F698205E1EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C69259D-DD9F-4809-B469-DC27B7E9040B}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		azure-pipelines.yaml = azure-pipelines.yaml
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTreeProject.GEDCOM.Tests", "tests\FamilyTreeProject.GEDCOM.Tests\FamilyTreeProject.GEDCOM.Tests.csproj", "{002EB1C2-CBBD-4A4E-8EA0-9B5D51D37C87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FamilyTreeProject.GEDCOM.Tests", "tests\FamilyTreeProject.GEDCOM.Tests\FamilyTreeProject.GEDCOM.Tests.csproj", "{002EB1C2-CBBD-4A4E-8EA0-9B5D51D37C87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3934054F-B19C-41A4-B52A-0A772A077DDE}
 	EndGlobalSection
 EndGlobal
