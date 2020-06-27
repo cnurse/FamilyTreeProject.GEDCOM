@@ -1,5 +1,5 @@
 ﻿using System;
-using FamilyTreeProject.Core.Common;
+using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
 // ReSharper disable InconsistentNaming

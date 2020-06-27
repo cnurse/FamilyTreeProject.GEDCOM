@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using FamilyTreeProject.Core.Data;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.IO;
 using FamilyTreeProject.GEDCOM.Records;
@@ -14,7 +13,7 @@ namespace FamilyTreeProject.GEDCOM
     /// <summary>
     ///   This Class provides utilities for working with GEDCOM 5.5 data
     /// </summary>
-    public class GEDCOMDocument : IDocument
+    public class GEDCOMDocument
     {
         private GEDCOMRecordList _familyRecords;
         private GEDCOMHeaderRecord _headerRecord;

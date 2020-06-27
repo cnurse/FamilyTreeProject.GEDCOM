@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Structures;
 // ReSharper disable ConvertPropertyToExpressionBody
