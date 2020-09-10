@@ -25,7 +25,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
     public class GEDCOMNameStructure : GEDCOMStructure
     {
         // Expression pattern used to parse the Name record.
-        private readonly Regex _nameReg = new Regex(@"(?<first>[\w\s]*)/(?<last>[\S]*)/");
+        private readonly Regex _nameReg = new Regex(@"(?<first>[\w\s]*)\/(?<last>[\w\s-]*)\/(?<suffix>[\w\s-]*)");
 
         #region Constructors
 
@@ -118,7 +118,16 @@ namespace FamilyTreeProject.GEDCOM.Structures
         /// </summary>
         public string Suffix
         {
-            get { return GetChildData(GEDCOMTag.NSFX); }
+            get
+            {
+                string suffix = ChildRecords.GetRecordData(GEDCOMTag.NSFX);
+                if (String.IsNullOrEmpty(suffix) && !String.IsNullOrEmpty(FullName))
+                {
+                    Match match = _nameReg.Match(FullName);
+                    suffix = match.Groups["first"].Value.Trim();
+                }
+                return suffix;
+            }
             set { SetChildData(GEDCOMTag.NSFX, value); }
         }
 
