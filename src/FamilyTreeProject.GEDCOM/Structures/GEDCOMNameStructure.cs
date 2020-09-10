@@ -124,7 +124,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
                 if (String.IsNullOrEmpty(suffix) && !String.IsNullOrEmpty(FullName))
                 {
                     Match match = _nameReg.Match(FullName);
-                    suffix = match.Groups["first"].Value.Trim();
+                    suffix = match.Groups["suffix"].Value.Trim();
                 }
                 return suffix;
             }
