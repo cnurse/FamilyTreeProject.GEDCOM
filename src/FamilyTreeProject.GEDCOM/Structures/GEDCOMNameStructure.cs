@@ -25,7 +25,7 @@ namespace FamilyTreeProject.GEDCOM.Structures
     public class GEDCOMNameStructure : GEDCOMStructure
     {
         // Expression pattern used to parse the Name record.
-        private readonly Regex _nameReg = new Regex(@"(?<first>[\w\s]*)\/(?<last>[\w\s-]*)\/(?<suffix>[\w\s-]*)");
+        private readonly Regex _nameReg = new Regex(@"(?<first>[\p{L}\s-,]*)\/(?<last>[\p{L}\s-,]*)\/(?<suffix>[\p{L}\s-,]*)");
 
         #region Constructors
 
