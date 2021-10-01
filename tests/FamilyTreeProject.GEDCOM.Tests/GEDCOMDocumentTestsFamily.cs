@@ -7,6 +7,7 @@
 // *****************************************
 
 using System;
+using System.IO;
 using System.Linq;
 
 using FamilyTreeProject.GEDCOM.Tests.Common;
@@ -18,8 +19,12 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    [TestFixture]
+    public class GEDCOMDocumentTestsFamily : GEDCOMTestBase
     {
+        protected override string FilePath => Path.Combine(base.FilePath, "GEDCOMDocumentTests");
+
+
         #region SelectChildsFamilyRecord
 
         [Test]
@@ -29,7 +34,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() => document.SelectChildsFamilyRecord(childId));
@@ -43,7 +48,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectChildsFamilyRecord(childId);
@@ -61,7 +66,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectChildsFamilyRecord(childId);
@@ -82,7 +87,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectFamilyRecord(familyId);
@@ -99,7 +104,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectFamilyRecord(familyId);
@@ -114,7 +119,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() => document.SelectFamilyRecord(husbandId, wifeId));
@@ -126,7 +131,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() => document.SelectFamilyRecord(husbandId, wifeId));
@@ -140,7 +145,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectFamilyRecord(husbandId, wifeId);
@@ -157,7 +162,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectFamilyRecord(husbandId, wifeId);
@@ -177,7 +182,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() => document.SelectFamilyRecords(individualId));
@@ -194,7 +199,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var records = document.SelectFamilyRecords(individualId);
@@ -211,7 +216,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Act
             var record = document.SelectFamilyRecords(husbandId).SingleOrDefault();
@@ -229,7 +234,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
             string husbandId = String.Empty;
 
             //Act
@@ -241,5 +246,6 @@ namespace FamilyTreeProject.GEDCOM.Tests
         }
 
         #endregion
+        
     }
 }

@@ -19,8 +19,11 @@ namespace FamilyTreeProject.GEDCOM.Tests
     /// <summary>
     ///   Summary description for GEDCOMTests
     /// </summary>
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    [TestFixture]
+    public class GEDCOMDocumentTestsIndividual : GEDCOMTestBase
     {
+        protected override string FilePath => Path.Combine(base.FilePath, "GEDCOMDocumentTests");
+
         #region SelectIndividualRecord
 
         [Test]
@@ -31,7 +34,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
             string id = String.Format("@I{0}@", recordNo);
 
             //Act
@@ -49,7 +52,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             //Arrange
             var document = new GEDCOMDocument();
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
             string id = String.Format("@I{0}@", recordNo);
 
             //Act

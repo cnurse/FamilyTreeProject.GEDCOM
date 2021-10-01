@@ -27,11 +27,8 @@ namespace FamilyTreeProject.GEDCOM.Tests
     {
         #region Protected Properties
 
-        protected override string EmbeddedFilePath
-        {
-            get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMReaderTests"; }
-        }
-
+        protected override string FilePath => Path.Combine(base.FilePath, "GEDCOMReaderTests");
+        
         #endregion
 
         #region Create
@@ -39,7 +36,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMReader_Create_Throws_Exception_If_Stream_Parameter_Is_Null()
         {
-            Stream s = GetEmbeddedFileStream("InvalidFileName");
+            Stream s = GetFileStream("InvalidFileName");
             Assert.Throws<ArgumentNullException>(() => GEDCOMReader.Create(s));
         }
 
@@ -65,7 +62,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToFamily_Returns_False_If_No_Family_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("NoRecords"))
+            using (Stream s = GetFileStream("NoRecords"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToFamily();
@@ -79,7 +76,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToFamily_Returns_True_If_At_Least_One_Family_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneFamily"))
+            using (Stream s = GetFileStream("OneFamily"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToFamily();
@@ -93,7 +90,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToFamily_Returns_False_If_No_More_Family_Records()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneFamily"))
+            using (Stream s = GetFileStream("OneFamily"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToFamily();
@@ -115,7 +112,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToHeader_Returns_False_If_No_Header_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("Empty"))
+            using (Stream s = GetFileStream("Empty"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToHeader();
@@ -129,7 +126,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToHeader_Returns_True_If_At_Least_One_Header_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToHeader();
@@ -143,7 +140,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToHeader_Returns_False_If_Past_Header()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToIndividual();
@@ -165,7 +162,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToIndividual_Returns_False_If_No_Individual_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("NoRecords"))
+            using (Stream s = GetFileStream("NoRecords"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToIndividual();
@@ -179,7 +176,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToIndividual_Returns_True_If_At_Least_One_Individual_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToIndividual();
@@ -193,7 +190,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToIndividual_Returns_False_If_No_More_Individual_Records()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToIndividual();
@@ -215,7 +212,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToRecord_Returns_False_If_No_Records()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("Empty"))
+            using (Stream s = GetFileStream("Empty"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToRecord();
@@ -229,7 +226,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_MoveToRecord_Returns_True_If_At_Least_One_Record()
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToRecord();
@@ -244,7 +241,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMRecord record;
-            using (Stream s = GetEmbeddedFileStream("OneIndividual"))
+            using (Stream s = GetFileStream("OneIndividual"))
             {
                 reader = GEDCOMReader.Create(s);
                 bool moveResult = reader.MoveToRecord();
@@ -272,7 +269,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [TestCase("TwoIndividuals", 5)]
         public void GEDCOMReader_Read_Reads_Correct_Count_Of_Records_From_String(string fileName, int expectedCount)
         {
-            string text = GetEmbeddedFileString(fileName);
+            string text = GetFileString(fileName);
             GEDCOMReader reader = GEDCOMReader.Create(text);
             Assert.AreEqual(expectedCount, reader.Read().Count);
         }
@@ -285,7 +282,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         public void GEDCOMReader_Read_Reads_Correct_Count_Of_Records_From_Stream(string fileName, int expectedCount)
         {
             GEDCOMReader reader;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
 
@@ -300,12 +297,11 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [TestCase("TwoIndividuals", 5)]
         public void GEDCOMReader_Read_Reads_Correct_Count_Of_Records_From_TextReader(string fileName, int expectedCount)
         {
-            string text = GetEmbeddedFileString(fileName);
+            string text = GetFileString(fileName);
             GEDCOMReader reader;
             using (StringReader stringReader = new StringReader(text))
             {
                 reader = GEDCOMReader.Create(stringReader);
-
                 Assert.AreEqual(expectedCount, reader.Read().Count);
             }
         }
@@ -327,7 +323,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMRecordList records;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.Read();
@@ -343,7 +339,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMRecordList records;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.Read();
@@ -369,7 +365,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMRecordList records;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.Read();
@@ -384,7 +380,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMRecordList records;
-            using (Stream s = GetEmbeddedFileStream("TwoIndividuals"))
+            using (Stream s = GetFileStream("TwoIndividuals"))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.Read();
@@ -441,7 +437,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMRecordList records;
 
             //Act
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.ReadFamilies();
@@ -465,7 +461,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMFamilyRecord record;
-            using (Stream s = GetEmbeddedFileStream("NoRecords"))
+            using (Stream s = GetFileStream("NoRecords"))
             {
                 reader = GEDCOMReader.Create(s);
                 record = reader.ReadFamily();
@@ -481,7 +477,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMFamilyRecord record = null;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 for (int i = 0; i < recordNo; i++)
@@ -502,7 +498,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMReader reader;
             GEDCOMFamilyRecord actualRecord = null;
             GEDCOMFamilyRecord expectedRecord = Util.CreateFamilyRecord(recordNo);
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 for (int i = 0; i < recordNo; i++)
@@ -524,7 +520,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMHeaderRecord record;
-            using (Stream s = GetEmbeddedFileStream("Empty"))
+            using (Stream s = GetFileStream("Empty"))
             {
                 reader = GEDCOMReader.Create(s);
                 record = reader.ReadHeader();
@@ -543,7 +539,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMHeaderRecord actualRecord;
             GEDCOMHeaderRecord expectedRecord = Util.CreateHeaderRecord(fileName);
 
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 actualRecord = reader.ReadHeader();
@@ -562,7 +558,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMIndividualRecord record;
-            using (Stream s = GetEmbeddedFileStream("NoRecords"))
+            using (Stream s = GetFileStream("NoRecords"))
             {
                 reader = GEDCOMReader.Create(s);
                 record = reader.ReadIndividual();
@@ -578,7 +574,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         {
             GEDCOMReader reader;
             GEDCOMIndividualRecord record = null;
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 for (int i = 0; i < recordNo; i++)
@@ -599,7 +595,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMReader reader;
             GEDCOMIndividualRecord actualRecord = null;
             GEDCOMIndividualRecord expectedRecord = Util.CreateIndividualRecord(recordNo);
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 for (int i = 0; i < recordNo; i++)
@@ -627,7 +623,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             GEDCOMRecordList records;
 
             //Act
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 reader = GEDCOMReader.Create(s);
                 records = reader.ReadIndividuals();
@@ -643,11 +639,5 @@ namespace FamilyTreeProject.GEDCOM.Tests
         }
 
         #endregion
-
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
     }
 }

@@ -100,9 +100,9 @@ namespace FamilyTreeProject.GEDCOM.Tests.Common
                     name = new GEDCOMNameStructure("John /Smith/", individual.Level + 1);
                     individual.Name = name;
                     individual.Sex = Sex.Male;
-                    birthEvent = new GEDCOMEventStructure(individual.Level + 1, "BIRT", "10 Apr 1964", "AnyTown");
+                    birthEvent = new GEDCOMEventStructure(individual.Level + 1, "BIRT", "10 Apr 1964",  "AnyTown", string.Empty);
                     individual.ChildRecords.Add(birthEvent);
-                    deathEvent = new GEDCOMEventStructure(individual.Level + 1, "DEAT", "15 May 1998", "AnyTown");
+                    deathEvent = new GEDCOMEventStructure(individual.Level + 1, "DEAT", "15 May 1998", "AnyTown", string.Empty);
                     individual.ChildRecords.Add(deathEvent);
                     break;
                 case 2:

@@ -36,7 +36,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         ///   Constructs a GEDCOMRecord object
         /// </summary>
         /// <param name = "record">The record of text that represents a GEDCOMRecord</param>
-        internal GEDCOMRecord(string record)
+        public GEDCOMRecord(string record)
         {
             Parse(record);
             _childRecords = new GEDCOMRecordList();
@@ -50,7 +50,7 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// <param name = "xRefId">An optional XrefId reference</param>
         /// <param name = "tag">The tag name of the GEDCOM Record</param>
         /// <param name = "data">The data part of the GEDCOM Record</param>
-        internal GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
+        public GEDCOMRecord(int level, string id, string xRefId, string tag, string data)
         {
             Level = level;
             Id = id;
@@ -60,6 +60,17 @@ namespace FamilyTreeProject.GEDCOM.Records
             _childRecords = new GEDCOMRecordList();
         }
 
+        /// <summary>
+        ///   Constructs a GEDCOMRecord object
+        /// </summary>
+        /// <param name = "level">The level (or depth) of the GEDCOM Record</param>
+        /// <param name = "tag">The tag name of the GEDCOM Record</param>
+        /// <param name = "data">The data part of the GEDCOM Record</param>
+        public GEDCOMRecord(int level, string tag, string data)
+            :this(level, string.Empty, string.Empty, tag, data)
+        {
+        }
+        
         /// <summary>
         ///   Constructs a GEDCOMRecord object
         /// </summary>
@@ -268,6 +279,11 @@ namespace FamilyTreeProject.GEDCOM.Records
         /// </summary>
         public void SplitData()
         {
+            if (string.IsNullOrWhiteSpace(Data))
+            {
+                return;
+            }
+
             string[] data = Data.Split(new[] {'\n'});
 
             if (data.Length > 1)

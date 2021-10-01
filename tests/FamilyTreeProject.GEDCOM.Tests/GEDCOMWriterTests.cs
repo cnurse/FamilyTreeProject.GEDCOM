@@ -28,10 +28,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
     {
         #region Protected Properties
 
-        protected override string EmbeddedFilePath
-        {
-            get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMWriterTests"; }
-        }
+        protected override string FilePath => Path.Combine(base.FilePath, "GEDCOMWriterTests");
 
         #endregion
 
@@ -40,7 +37,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMWriter_Create_Throws_Exception_If_Stream_Parameter_Is_Null()
         {
-            Stream s = GetEmbeddedFileStream("InvalidFileName");
+            Stream s = GetFileStream("InvalidFileName");
             Assert.Throws<ArgumentNullException>(() => GEDCOMWriter.Create(s));
         }
 
@@ -261,7 +258,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             writer.WriteRecord(record);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString("OneFamily"), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString("OneFamily"), sb);
         }
 
         [Test]
@@ -277,7 +274,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             writer.WriteRecord(record);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString("Header"), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString("Header"), sb);
         }
 
         [Test]
@@ -293,7 +290,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             writer.WriteRecord(record);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString("OneIndividual"), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString("OneIndividual"), sb);
         }
 
         #endregion
@@ -313,7 +310,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             writer.WriteRecords(individuals);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString("TwoFamilies"), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString("TwoFamilies"), sb);
         }
 
         [Test]
@@ -329,15 +326,9 @@ namespace FamilyTreeProject.GEDCOM.Tests
             writer.WriteRecords(individuals);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString("TwoIndividuals"), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString("TwoIndividuals"), sb);
         }
 
         #endregion
-
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
     }
 }

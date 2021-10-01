@@ -133,13 +133,25 @@ namespace FamilyTreeProject.GEDCOM.Structures
             _eventClass = eventClass;
         }
 
-        public GEDCOMEventStructure(int level, string tag, string date, string place) : base(new GEDCOMRecord(level, "", "", tag, ""))
+        public GEDCOMEventStructure(int level, string tag, string date, string place, string data)
+            : base(new GEDCOMRecord(level, "", "", tag, data)) 
         {
             var dateRecord = new GEDCOMRecord(level + 1, "", "", "DATE", date);
             ChildRecords.Add(dateRecord);
 
             var placeRecord = new GEDCOMPlaceStructure(level + 1, place);
             ChildRecords.Add(placeRecord);
+        }
+
+        public GEDCOMEventStructure(int level, string tag, string date, string place)
+            : this(level, tag, date, place, String.Empty)
+        {
+        }
+
+        public GEDCOMEventStructure(int level, string tag, string date, string place, string data, GEDCOMRecordList childRecords)
+            : this(level, tag, date, place, data)
+        {
+            ChildRecords.AddRange(childRecords);
         }
 
         /// <summary>

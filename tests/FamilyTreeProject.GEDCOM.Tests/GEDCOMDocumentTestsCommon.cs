@@ -23,14 +23,11 @@ namespace FamilyTreeProject.GEDCOM.Tests
     ///   Summary description for GEDCOMTests
     /// </summary>
     [TestFixture]
-    public partial class GEDCOMDocumentTests : GEDCOMTestBase
+    public class GEDCOMDocumentTestsCommon : GEDCOMTestBase
     {
         #region Protected Properties
 
-        protected override string EmbeddedFilePath
-        {
-            get { return "FamilyTreeProject.GEDCOM.Tests.TestFiles.GEDCOMDocumentTests"; }
-        }
+        protected override string FilePath => Path.Combine(base.FilePath, "GEDCOMDocumentTests");
 
         #endregion
 
@@ -155,7 +152,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMDocument_Load_Throws_If_Stream_Parameter_IsNull()
         {
-            Stream s = GetEmbeddedFileStream("InvalidFileName");
+            Stream s = GetFileStream("InvalidFileName");
             var document = new GEDCOMDocument();
 
             //Assert
@@ -192,7 +189,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Act
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 document.Load(s);
             }
@@ -211,7 +208,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Act
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 document.Load(new StreamReader(s));
             }
@@ -228,7 +225,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Act
-            using (Stream s = GetEmbeddedFileStream(fileName))
+            using (Stream s = GetFileStream(fileName))
             {
                 document.Load(new StreamReader(s));
             }
@@ -251,7 +248,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             var document = new GEDCOMDocument();
 
             //Act
-            document.LoadGEDCOM(GetEmbeddedFileString(fileName));
+            document.LoadGEDCOM(GetFileString(fileName));
 
             //Assert
             Assert.AreEqual(recordCount, document.IndividualRecords.Count);
@@ -334,7 +331,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
         [Test]
         public void GEDCOMDocument_Save_If_Stream_Parameter_IsNull()
         {
-            var s = GetEmbeddedFileStream("InvalidFileName");
+            var s = GetFileStream("InvalidFileName");
             var document = new GEDCOMDocument();
 
             //Assert
@@ -383,7 +380,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             document.Save(writer);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString(fileName), sb);
         }
 
         [Test]
@@ -408,7 +405,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             document.Save(writer);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString(fileName), sb);
         }
 
         [Test]
@@ -439,7 +436,7 @@ namespace FamilyTreeProject.GEDCOM.Tests
             document.Save(writer);
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), sb);
+            GEDCOMAssert.IsValidOutput(GetFileString(fileName), sb);
         }
 
         #endregion
@@ -467,16 +464,9 @@ namespace FamilyTreeProject.GEDCOM.Tests
             }
 
             //Assert
-            GEDCOMAssert.IsValidOutput(GetEmbeddedFileString(fileName), document.SaveGEDCOM());
+            GEDCOMAssert.IsValidOutput(GetFileString(fileName), document.SaveGEDCOM());
         }
 
         #endregion
-
-        protected override Stream GetEmbeddedFileStream(string fileName)
-        {
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(GetEmbeddedFileName(fileName));
-        }
-
-
     }
 }
